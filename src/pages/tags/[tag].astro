@@ -1,5 +1,7 @@
 ---
 import { getCollection } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+import BlogCard from "../../components/BlogCard.astro";
 export async function getStaticPaths() {
   const posts = await getCollection('blog');
 
@@ -18,13 +20,63 @@ export async function getStaticPaths() {
 const allPosts = await getCollection("blog");
 const tag = Astro.params.tag; // Lấy giá trị tag từ URL
 const filteredPosts = allPosts.filter((post) => post.data.tags.includes(tag as string));
-
+const authors = await getCollection("authors");
 ---
-<h1>Posts tagged with "{tag}"</h1>
-<ul>
-  {filteredPosts.map((post) => (
-    <li> 
-      {/* <a href={`/blog/${post.slug}/`}>{post.data.title}</a> */}
-    </li>
-  ))}
-</ul>
+
+<Layout>
+  <!-- Ô Input Tìm Kiếm -->
+  <div class="px-4 lg:px-44 mb-2">
+    <input 
+      type="text" 
+      id="titleInput"
+      placeholder="Search by title..." 
+      class="w-full p-2 border rounded-md"  
+    />
+  </div> 
+
+  <!-- Danh Sách Bài Viết -->
+  <div class="px-4 lg:px-44 grid grid-cols-1 gap-4 lg:grid-cols-3">
+    {filteredPosts.map((post) => (
+      <BlogCard
+        id={post.id} 
+        title={post.data.title} 
+        desc={post.data.desc}
+        pubDate={post.data.pubDate} 
+        updatedDate={post.data.updatedDate}  
+        tags={post.data.tags}
+        author={authors.find((a) => a.id === post.data.author.id)?.data}
+        data-title={post.data.title.toLowerCase()}
+        data-tags={JSON.stringify(post.data.tags.map(tag => tag.toLowerCase()))} 
+        class="post-item"
+      />
+    ))}
+  </div>
+</Layout>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const inputElement = document.getElementById("titleInput");
+    if (inputElement instanceof HTMLInputElement) {
+      inputElement.addEventListener("input", filterPosts);
+    }
+  });
+
+  
+
+  function filterPosts() {
+    const input = document.getElementById("titleInput");
+    if (!(input instanceof HTMLInputElement)) return;
+
+    const query = input.value.toLowerCase();
+    const posts = document.querySelectorAll(".post-item");
+
+    posts.forEach((post) => {
+      if (post instanceof HTMLElement) {
+        const title = post.getAttribute("data-title") || "";
+        post.style.display = title.includes(query) ? "block" : "none";
+      }
+    });
+  }
+
+  
+</script>

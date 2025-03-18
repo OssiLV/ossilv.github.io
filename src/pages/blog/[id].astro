@@ -3,10 +3,10 @@ import { getCollection, render } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 import ContentMD from '../../components/ContentMD.astro';
 export async function getStaticPaths() {
-  const posts = await getCollection('blog');
+  const posts = await getCollection('blog'); 
   return posts.map(post => ({
     params: { id: post.id },
-    props: { post },
+    props: { post }, 
   }));
 }
 const authors = await getCollection("authors");
@@ -20,6 +20,7 @@ const { Content } = await render(post);
     title= {post.data.title} 
     desc={post.data.desc} 
     author={authors.find((a) => a.id === post.data.author.id)?.data}
+    tags={post.data.tags}
     pubDate={post.data.pubDate} 
     updatedDate={post.data.updatedDate}   
   />

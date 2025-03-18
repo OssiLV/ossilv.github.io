@@ -5,8 +5,6 @@ import Layout from "../layouts/Layout.astro";
 
 const posts = await getCollection("blog");
 const authors = await getCollection("authors");
-
-
 ---
 
 <Layout>
@@ -15,7 +13,7 @@ const authors = await getCollection("authors");
     <input 
       type="text" 
       id="titleInput"
-      placeholder="Post title..." 
+      placeholder="Search by title..." 
       class="w-full p-2 border rounded-md"  
     />
   </div> 
@@ -32,6 +30,7 @@ const authors = await getCollection("authors");
         tags={post.data.tags}
         author={authors.find((a) => a.id === post.data.author.id)?.data}
         data-title={post.data.title.toLowerCase()}
+        data-tags={JSON.stringify(post.data.tags.map(tag => tag.toLowerCase()))} 
         class="post-item"
       />
     ))}
@@ -41,15 +40,16 @@ const authors = await getCollection("authors");
 <script>
   document.addEventListener("DOMContentLoaded", () => {
     const inputElement = document.getElementById("titleInput");
-
     if (inputElement instanceof HTMLInputElement) {
       inputElement.addEventListener("input", filterPosts);
     }
   });
 
+  
+
   function filterPosts() {
-    const input = document.getElementById("titleInput"); // Đúng ID
-    if (!(input instanceof HTMLInputElement)) return; // Kiểm tra input hợp lệ
+    const input = document.getElementById("titleInput");
+    if (!(input instanceof HTMLInputElement)) return;
 
     const query = input.value.toLowerCase();
     const posts = document.querySelectorAll(".post-item");
@@ -61,4 +61,6 @@ const authors = await getCollection("authors");
       }
     });
   }
+
+  
 </script>
