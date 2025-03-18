@@ -1,0 +1,19 @@
+@import "tailwindcss";
+@plugin '@tailwindcss/typography';
+
+
+.prose h1 a::after,
+.prose h2 a::after,
+.prose h3 a::after {
+  content: " #"; /* Icon */
+  opacity: 0;
+  transition: opacity 0.2s;
+  font-size: 0.8em;
+  margin-left: 0.3em;
+}
+
+.prose h1:hover a::after,
+.prose h2:hover a::after,
+.prose h3:hover a::after {
+  opacity: 0.5;
+}

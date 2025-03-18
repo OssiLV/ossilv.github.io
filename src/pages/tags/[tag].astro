@@ -1,0 +1,15 @@
+---
+import { getCollection } from "astro:content";
+
+const allPosts = await getCollection("blog");
+const tag = Astro.params.tag; // Lấy giá trị tag từ URL
+const filteredPosts = allPosts.filter((post) => post.data.tags.includes(tag as string));
+---
+<h1>Posts tagged with "{tag}"</h1>
+<ul>
+  {filteredPosts.map((post) => (
+    <li>
+      <a href={`/blog/${post.slug}/`}>{post.data.title}</a>
+    </li>
+  ))}
+</ul>

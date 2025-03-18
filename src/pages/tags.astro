@@ -1,0 +1,16 @@
+---
+import { getCollection } from "astro:content";
+
+const posts = await getCollection("blog");
+
+// Lấy danh sách tất cả các tags (không trùng lặp)
+const allTags = Array.from(new Set(posts.flatMap((post) => post.data.tags)));
+---
+<h1>All Tags</h1>
+<ul>
+  {allTags.map((tag) => (
+    <li>
+      <a href={`/tags/${tag}/`}>{tag}</a>
+    </li>
+  ))}
+</ul>
