@@ -1,38 +1,52 @@
 ---
-
 import { Image } from "astro:assets";
 import XIcon from "../assets/x_icon.png";
 import GithubIcon from "../assets/github_icon.png";
 import LinkedInLightIcon from "../assets/linkedin_light_icon.png";
 ---
-<div class="bg-slate-200/20 flex justify-center gap-1 items-center rounded-md break-words px-6 md:px-2 max-w-3xl mx-auto my-4 p-2">
+
+<div
+    class="bg-slate-200/20 flex justify-center gap-1 items-center rounded-md break-words px-6 md:px-2 max-w-3xl mx-auto my-4 p-2"
+>
     <a href="https://github.com/OssiLV" class="mr-[4px]">
-        <Image class={`w-[34px] h-[34px] rounded-sm`} src={GithubIcon} alt="x_icon" format="webp"/> 
+        <Image
+            class={`w-[34px] h-[34px] rounded-sm`}
+            src={GithubIcon}
+            alt="x_icon"
+            format="webp"
+        />
     </a>
     <a href="https://www.linkedin.com/in/ossilv/">
-        <Image class={`w-10 h-10`} src={LinkedInLightIcon} alt="x_icon" format="webp"/>
+        <Image
+            class={`w-10 h-10`}
+            src={LinkedInLightIcon}
+            alt="x_icon"
+            format="webp"
+        />
     </a>
     <a href="https://x.com/OssiLeVi">
-        <Image class={`w-10 h-10`} src={XIcon} alt="x_icon" format="webp"/>
+        <Image class={`w-10 h-10`} src={XIcon} alt="x_icon" format="webp" />
     </a>
-    <button id="scrollTopBtn" class="cursor-pointer hidden fixed bottom-9 right-9 bg-slate-200/20 text-black px-4 py-2 rounded">
+    <button
+        id="scrollTopBtn"
+        class="cursor-pointer hidden fixed bottom-9 right-9 bg-slate-500/20 text-black px-4 py-2 rounded text-xl font-bold"
+    >
         ↑
     </button>
-      
 </div>
 
 <script>
     const scrollTopBtn = document.getElementById("scrollTopBtn");
-  
+
     window.addEventListener("scroll", () => {
-      if (window.scrollY > 300) {
-        scrollTopBtn?.classList.remove("hidden");
-      } else {
-        scrollTopBtn?.classList.add("hidden");
-      }
+        if (window.scrollY > 300) {
+            scrollTopBtn?.classList.remove("hidden");
+        } else {
+            scrollTopBtn?.classList.add("hidden");
+        }
     });
-  
+
     scrollTopBtn?.addEventListener("click", () => {
-      window.scrollTo({ top: 0, behavior: "smooth" });
+        window.scrollTo({ top: 0, behavior: "smooth" });
     });
-  </script>
+</script>

@@ -1,0 +1,72 @@
+---
+export interface Props {
+    headings: Heading[];
+}
+
+export interface Heading {
+    depth: number;
+    slug: string;
+    text: string;
+}
+const { headings } = Astro.props;
+console.log(headings);
+---
+
+<button
+    id="toggle_toc"
+    class="fixed right-9 top-16 border-1 bg-slate-300/20 border-gray-500 rounded-md cursor-pointer hover:bg-slate-400/30 transition-colors"
+    aria-label="Toggle Table of Contents"
+    ><svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="34px"
+        height="34px"
+        viewBox="0 0 24 24"
+        fill="none"
+    >
+        <path
+            d="M4 6H20M4 12H20M4 18H20"
+            stroke="#000000"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"></path>
+    </svg>
+</button>
+
+<aside
+    id="toc"
+    class="hidden overflow-auto fixed top-30 right-1 w-96 p-4 bg-gray-100 rounded-lg shadow-md max-h-[80vh] select-none"
+>
+    <h2 class="scroll-m-20 pb-2 text-3xl font-bold tracking-tight first:mt-0">
+        Mục lục
+    </h2>
+    <ul>
+        {
+            headings.map((heading) => (
+                <li
+                    class={`${heading.depth - 1 === 1 ? "pl-4" : ""} ${heading.depth - 1 === 2 ? "pl-8" : ""} leading-7 `}
+                >
+                    <a
+                        class={` hover:underline hover:text-blue-500 transition-colors  ${
+                            heading.depth === 1 ? "font-bold" : ""
+                        } ${heading.depth === 2 ? " underline" : ""}`}
+                        href={`#${heading.slug}`}
+                    >
+                        {heading.text}
+                    </a>
+                </li>
+            ))
+        }
+    </ul>
+</aside>
+
+<script>
+    const btnToggleTOC = document.getElementById("toggle_toc");
+    const toc = document.getElementById("toc");
+    btnToggleTOC?.addEventListener("click", function () {
+        if (toc?.classList.contains("hidden")) {
+            toc?.classList.remove("hidden");
+        } else {
+            toc?.classList.add("hidden");
+        }
+    });
+</script>
