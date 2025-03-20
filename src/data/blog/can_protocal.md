@@ -4,8 +4,8 @@ desc: "Những gì cần biết về CAN"
 author: ossilv # references `src/data/authors/ossilv.json`
 relatedPosts:
     - none
-pubDate: 2024-03-18
-updatedDate: 2024-03-19
+pubDate: 2025-03-18
+updatedDate: 2025-03-19
 tags: ["can", "protocal", "embedded", "automotive"]
 ---
 
