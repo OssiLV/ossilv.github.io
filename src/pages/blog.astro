@@ -8,59 +8,61 @@ const authors = await getCollection("authors");
 ---
 
 <Layout>
-  <!-- Ô Input Tìm Kiếm -->
-  <div class="px-4 lg:px-44 mb-2">
-    <input 
-      type="text" 
-      id="titleInput"
-      placeholder="Search by title..." 
-      class="w-full p-2 border rounded-md"  
-    />
-  </div> 
+    <!-- Search Input -->
+    <div class="px-4 lg:px-44 mb-2">
+        <input
+            type="text"
+            id="titleInput"
+            placeholder="Search by title..."
+            class="w-full p-2 border rounded-md"
+        />
+    </div>
 
-  <!-- Danh Sách Bài Viết -->
-  <div class="px-4 lg:px-44 grid grid-cols-1 gap-4 lg:grid-cols-3">
-    {posts.map((post) => (
-      <BlogCard
-        id={post.id} 
-        title={post.data.title} 
-        desc={post.data.desc}
-        pubDate={post.data.pubDate} 
-        updatedDate={post.data.updatedDate}  
-        tags={post.data.tags}
-        author={authors.find((a) => a.id === post.data.author.id)?.data}
-        data-title={post.data.title.toLowerCase()}
-        data-tags={JSON.stringify(post.data.tags.map(tag => tag.toLowerCase()))} 
-        class="post-item"
-      />
-    ))}
-  </div>
+    <!-- Danh Sách Bài Viết -->
+    <div class="px-4 lg:px-44 grid grid-cols-1 gap-4 lg:grid-cols-3">
+        {
+            posts.map((post) => (
+                <BlogCard
+                    id={post.id}
+                    title={post.data.title}
+                    desc={post.data.desc}
+                    pubDate={post.data.pubDate}
+                    updatedDate={post.data.updatedDate}
+                    tags={post.data.tags}
+                    author={
+                        authors.find((a) => a.id === post.data.author.id)?.data
+                    }
+                    data-title={post.data.title.toLowerCase()}
+                    data-tags={JSON.stringify(
+                        post.data.tags.map((tag) => tag.toLowerCase())
+                    )}
+                    class="post-item"
+                />
+            ))
+        }
+    </div>
 </Layout>
 
 <script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const inputElement = document.getElementById("titleInput");
-    if (inputElement instanceof HTMLInputElement) {
-      inputElement.addEventListener("input", filterPosts);
-    }
-  });
-
-  
-
-  function filterPosts() {
-    const input = document.getElementById("titleInput");
-    if (!(input instanceof HTMLInputElement)) return;
-
-    const query = input.value.toLowerCase();
-    const posts = document.querySelectorAll(".post-item");
-
-    posts.forEach((post) => {
-      if (post instanceof HTMLElement) {
-        const title = post.getAttribute("data-title") || "";
-        post.style.display = title.includes(query) ? "block" : "none";
-      }
+    document.addEventListener("DOMContentLoaded", () => {
+        const inputElement = document.getElementById("titleInput");
+        if (inputElement instanceof HTMLInputElement) {
+            inputElement.addEventListener("input", filterPosts);
+        }
     });
-  }
 
-  
+    function filterPosts() {
+        const input = document.getElementById("titleInput");
+        if (!(input instanceof HTMLInputElement)) return;
+
+        const query = input.value.toLowerCase();
+        const posts = document.querySelectorAll(".post-item");
+
+        posts.forEach((post) => {
+            if (post instanceof HTMLElement) {
+                const title = post.getAttribute("data-title") || "";
+                post.style.display = title.includes(query) ? "block" : "none";
+            }
+        });
+    }
 </script>

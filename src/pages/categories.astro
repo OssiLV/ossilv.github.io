@@ -1,0 +1,70 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "../layouts/Layout.astro";
+
+const posts = await getCollection("blog");
+
+// Object save number post in category
+const categoryCounts: Record<
+    string,
+    { count: number; subcategories: Record<string, number> }
+> = {};
+
+posts.forEach((post) => {
+    post.data.categories.forEach((category) => {
+        // Increase count for each parent category
+        if (!categoryCounts[category.name]) {
+            categoryCounts[category.name] = { count: 0, subcategories: {} };
+        }
+        categoryCounts[category.name].count++;
+
+        // Increase count for each subcategory
+        category.subcategories?.forEach((sub) => {
+            if (!categoryCounts[category.name].subcategories[sub]) {
+                categoryCounts[category.name].subcategories[sub] = 0;
+            }
+            categoryCounts[category.name].subcategories[sub]++;
+        });
+    });
+});
+
+// Convert object to array to render
+const categories = Object.entries(categoryCounts);
+---
+
+<Layout>
+    <div class="px-6 md:px-2 max-w-3xl mx-auto">
+        <ul>
+            {
+                categories.map(([category, data]) => (
+                    <li>
+                        <strong>
+                            <a
+                                href={`/categories/${category.toLowerCase()}`}
+                                class="hover:text-blue-500 transition-all hover:underline break-words max-w-full block"
+                            >
+                                {category} ({data.count})
+                            </a>
+                        </strong>
+                        {Object.keys(data.subcategories).length > 0 && (
+                            <ul>
+                                {Object.entries(data.subcategories).map(
+                                    ([sub, count]) => (
+                                        <li class="pl-4">
+                                            <a
+                                                href={`/categories/${sub.toLowerCase()}`}
+                                                class="hover:text-blue-500 transition-all hover:underline break-words max-w-full block"
+                                            >
+                                                {sub} ({count})
+                                            </a>
+                                        </li>
+                                    )
+                                )}
+                            </ul>
+                        )}
+                    </li>
+                ))
+            }
+        </ul>
+    </div>
+</Layout>

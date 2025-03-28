@@ -7,6 +7,9 @@ relatedPosts:
 pubDate: 2025-03-20
 updatedDate: 2025-03-20
 tags: ["transceiver", "schemantic", "pinout", "iot", "wireless", "embedded"]
+categories:
+    - name: "Embedded"
+      subcategories: ["Transceiver", "Wireless"]
 ---
 
 > [**Datasheet**](https://www.mouser.com/datasheet/2/297/nRF24L01_Product_Specification_v2_0-9199.pdf)

@@ -1,25 +1,38 @@
 ---
 export let links = [
-  { name: "About", href: "/about" },
-  // { name: "Contact", href: "/contact" },
-  { name: "Blog", href: "/blog" },
-  { name: "Tags", href: "/tags" },
+    { name: "About", href: "/about" },
+    // { name: "Contact", href: "/contact" },
+    { name: "Blog", href: "/blog" },
+    { name: "Tags", href: "/tags" },
+    { name: "Categories", href: "/categories" },
 ];
 ---
 
 <nav class="text-black py-3 mb-8">
-  <div class="flex flex-col gap-2 md:flex-row md:px-6 xl:px-96 justify-between items-center ">
-    <!-- Logo -->
-    <a href="/" class="scroll-m-20 text-3xl font-bold tracking-tight first:mt-0">OssiLV</a>
+    <div
+        class="flex flex-col gap-2 md:flex-row md:px-6 xl:px-96 justify-between items-center"
+    >
+        <!-- Logo -->
+        <a
+            href="/"
+            class="scroll-m-20 text-3xl font-bold tracking-tight first:mt-0"
+            >OssiLV</a
+        >
 
-    <!-- Menu Items -->
-    <ul class="flex space-x-6" id="menu">
-      {links.map((link) => (
-        <li>
-          <a href={link.href} class={`hover:text-gray-600 ${Astro.url.pathname === link.href ? "underline font-semibold": ""}`}>{link.name}</a>
-        </li>
-      ))}
-    </ul>
-  </div>
+        <!-- Menu Items -->
+        <ul class="flex space-x-6" id="menu">
+            {
+                links.map((link) => (
+                    <li>
+                        <a
+                            href={link.href}
+                            class={`hover:text-gray-600 ${Astro.url.pathname === link.href ? "underline font-semibold" : ""}`}
+                        >
+                            {link.name}
+                        </a>
+                    </li>
+                ))
+            }
+        </ul>
+    </div>
 </nav>
-

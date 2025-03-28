@@ -38,7 +38,7 @@ const {
     <p class="leading-7">
         {desc}
     </p>
-    <p class="text-sm text-slate-700/90">
+    <p class="text-sm text-slate-500">
         Published date: {
             pubDate.toLocaleDateString("en-US", {
                 year: "numeric",
@@ -47,7 +47,7 @@ const {
             })
         }
     </p>
-    <p class="text-sm text-slate-700/90">
+    <p class="text-sm text-slate-500">
         Updated date: {
             updatedDate.toLocaleDateString("en-US", {
                 year: "numeric",
@@ -68,7 +68,5 @@ const {
 </article>
 
 <div class="mt-8 break-words px-6 md:px-2 max-w-3xl mx-auto">
-    <div class="">
-        {tags?.map((tag) => <TagPill tag={tag} />)}
-    </div>
+    {tags?.map((tag) => <TagPill tag={tag} />)}
 </div>

@@ -7,6 +7,9 @@ relatedPosts:
 pubDate: 2025-03-18
 updatedDate: 2025-03-19
 tags: ["can", "protocal", "embedded", "automotive"]
+categories:
+    - name: "Embedded"
+      subcategories: ["Protocal"]
 ---
 
 > [**source**](https://www.ti.com/lit/an/sloa101b/sloa101b.pdf)

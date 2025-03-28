@@ -1,9 +1,14 @@
 ---
 interface Props {
-    tag: string
+    tag: string;
+    className?: string;
 }
-const {tag} = Astro.props;
+const { tag, className } = Astro.props;
 ---
-<a href={`/tags/${tag}`} class="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded mr-1">
+
+<a
+    href={`/tags/${tag}`}
+    class={`  inline-block p-2 mr-3 mb-3 bg-blue-100 text-blue-800 font-semibold rounded ${className} uppercase`}
+>
     {tag}
 </a>
