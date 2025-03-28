@@ -38,14 +38,14 @@ const categories = Object.entries(categoryCounts);
             {
                 categories.map(([category, data]) => (
                     <li>
-                        <strong>
-                            <a
-                                href={`/categories/${category.toLowerCase()}`}
-                                class="hover:text-blue-500 transition-all hover:underline break-words max-w-full block"
-                            >
-                                {category} ({data.count})
-                            </a>
-                        </strong>
+                        <a
+                            href={`/categories/${category.toLowerCase()}`}
+                            class="font-semibold  hover:text-blue-500 transition-all hover:underline break-words max-w-full block hover:scale-105"
+                        >
+                            {category}
+                            <span class="text-black ">({data.count})</span>
+                        </a>
+
                         {Object.keys(data.subcategories).length > 0 && (
                             <ul>
                                 {Object.entries(data.subcategories).map(
@@ -53,9 +53,12 @@ const categories = Object.entries(categoryCounts);
                                         <li class="pl-4">
                                             <a
                                                 href={`/categories/${sub.toLowerCase()}`}
-                                                class="hover:text-blue-500 transition-all hover:underline break-words max-w-full block"
+                                                class=" hover:text-blue-500 transition-all hover:underline break-words max-w-full block hover:scale-105 "
                                             >
-                                                {sub} ({count})
+                                                {sub}{" "}
+                                                <span class="text-black">
+                                                    ({count})
+                                                </span>
                                             </a>
                                         </li>
                                     )

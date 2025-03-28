@@ -29,44 +29,46 @@ const {
 } = Astro.props;
 ---
 
-<div class={`break-words px-6 md:px-2 max-w-3xl mx-auto mb-4 ${customClass}`}>
-    <h1
-        class="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl mb-4"
-    >
-        {title}
-    </h1>
-    <p class="leading-7">
-        {desc}
-    </p>
-    <p class="text-sm text-slate-500">
-        Published date: {
-            pubDate.toLocaleDateString("en-US", {
-                year: "numeric",
-                month: "long",
-                day: "numeric",
-            })
-        }
-    </p>
-    <p class="text-sm text-slate-500">
-        Updated date: {
-            updatedDate.toLocaleDateString("en-US", {
-                year: "numeric",
-                month: "long",
-                day: "numeric",
-            })
-        }
-    </p>
-    <a
-        href=`${author?.isCurrentSite ? Astro.url.origin + author.sourceURL: author?.sourceURL}`
-        class="text-sm text-slate-700/90 underline font-semibold"
-        >{author?.name}</a
-    >
-</div>
+<div class={`${customClass}`}>
+    <div class={`break-words px-6 md:px-2 max-w-3xl mx-auto mb-4 `}>
+        <h1
+            class="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl mb-4"
+        >
+            {title}
+        </h1>
+        <p class="leading-7">
+            {desc}
+        </p>
+        <p class="text-sm text-slate-500">
+            Published date: {
+                pubDate.toLocaleDateString("en-US", {
+                    year: "numeric",
+                    month: "long",
+                    day: "numeric",
+                })
+            }
+        </p>
+        <p class="text-sm text-slate-500">
+            Updated date: {
+                updatedDate.toLocaleDateString("en-US", {
+                    year: "numeric",
+                    month: "long",
+                    day: "numeric",
+                })
+            }
+        </p>
+        <a
+            href=`${author?.isCurrentSite ? Astro.url.origin + author.sourceURL: author?.sourceURL}`
+            class="text-sm text-slate-700/90 underline font-semibold"
+            >{author?.name}</a
+        >
+    </div>
 
-<article class="prose break-words px-6 md:px-2 max-w-3xl mx-auto">
-    <Content />
-</article>
+    <article class="prose break-words px-6 md:px-2 max-w-3xl mx-auto">
+        <Content />
+    </article>
 
-<div class="mt-8 break-words px-6 md:px-2 max-w-3xl mx-auto">
-    {tags?.map((tag) => <TagPill tag={tag} />)}
+    <div class="mt-8 break-words px-6 md:px-2 max-w-3xl mx-auto">
+        {tags?.map((tag) => <TagPill tag={tag} />)}
+    </div>
 </div>

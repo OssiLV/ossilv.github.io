@@ -3,6 +3,7 @@ import { getCollection, render } from "astro:content";
 import Layout from "../../layouts/Layout.astro";
 import ContentMD from "../../components/ContentMD.astro";
 import TableOfContents from "../../components/TableOfContents.astro";
+import CategoriesComponent from "../../components/CategoriesComponent.astro";
 export async function getStaticPaths() {
     const posts = await getCollection("blog");
     return posts.map((post) => ({
@@ -18,13 +19,23 @@ const { Content, headings } = await render(post);
 
 <Layout>
     <TableOfContents headings={headings} />
-    <ContentMD
-        Content={Content}
-        title={post.data.title}
-        desc={post.data.desc}
-        author={authors.find((a) => a.id === post.data.author.id)?.data}
-        tags={post.data.tags}
-        pubDate={post.data.pubDate}
-        updatedDate={post.data.updatedDate}
-    />
+
+    <div class="flex flex-col xl:flex-row">
+        <div class="hidden xl:block min-w-72 max-w-72 pl-8">
+            <CategoriesComponent />
+        </div>
+
+        <div class="flex-1 xl:flex justify-start">
+            <ContentMD
+                class="xl:ml-36"
+                Content={Content}
+                title={post.data.title}
+                desc={post.data.desc}
+                author={authors.find((a) => a.id === post.data.author.id)?.data}
+                tags={post.data.tags}
+                pubDate={post.data.pubDate}
+                updatedDate={post.data.updatedDate}
+            />
+        </div>
+    </div>
 </Layout>

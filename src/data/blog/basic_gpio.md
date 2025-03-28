@@ -12,4 +12,28 @@ categories:
       subcategories: ["GPIO"]
 ---
 
----
+# Giới thiệu
+
+# Tính năng của GPIO
+
+# GPIO hoạt động như thế nào ở bên trong?
+
+# Các chế độ (modes) của GPIO
+
+## Input Mode
+
+## Floating point
+
+## Pull-Up
+
+## Pull-down
+
+## Output Mode
+
+## Push-Pull
+
+## Open drain
+
+## Analog Mode
+
+## Alternate functionality mode

@@ -44,7 +44,7 @@ const { headings } = Astro.props;
         {
             headings.map((heading) => (
                 <li
-                    class={`${heading.depth - 1 === 1 ? "pl-4" : ""} ${heading.depth - 1 === 2 ? "pl-8" : ""} leading-7 `}
+                    class={`${heading.depth - 1 === 1 ? "pl-4" : ""} ${heading.depth - 1 === 2 ? "pl-8" : ""} leading-7 transition-all hover:scale-105`}
                 >
                     <a
                         class={` hover:underline hover:text-blue-500 transition-colors text-slate-600 `}

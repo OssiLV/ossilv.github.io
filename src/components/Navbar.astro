@@ -1,10 +1,14 @@
 ---
-export let links = [
-    { name: "About", href: "/about" },
+let links = [
+    { name: "About", href: "/about", hiddenForScreenLargerMobile: false },
     // { name: "Contact", href: "/contact" },
-    { name: "Blog", href: "/blog" },
-    { name: "Tags", href: "/tags" },
-    { name: "Categories", href: "/categories" },
+    { name: "Blog", href: "/blog", hiddenForScreenLargerMobile: false },
+    { name: "Tags", href: "/tags", hiddenForScreenLargerMobile: false },
+    {
+        name: "Categories",
+        href: "/categories",
+        hiddenForScreenLargerMobile: true,
+    },
 ];
 ---
 
@@ -26,7 +30,10 @@ export let links = [
                     <li>
                         <a
                             href={link.href}
-                            class={`hover:text-gray-600 ${Astro.url.pathname === link.href ? "underline font-semibold" : ""}`}
+                            class={`hover:text-gray-600 
+                                ${Astro.url.pathname === link.href ? "underline font-semibold" : ""} 
+                                ${link.hiddenForScreenLargerMobile ? "xl:hidden" : "block"}
+                            `}
                         >
                             {link.name}
                         </a>
