@@ -2,8 +2,9 @@
 title: "CAN (Control Area Network)"
 desc: "Những gì cần biết về CAN"
 author: ossilv # references `src/data/authors/ossilv.json`
-relatedPosts:
-    - none
+relatedPosts: []
+prevPost: none
+nextPost: none
 pubDate: 2025-03-18
 updatedDate: 2025-03-19
 tags: ["can", "protocal", "embedded", "automotive"]

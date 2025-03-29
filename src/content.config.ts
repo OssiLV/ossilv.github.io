@@ -8,12 +8,14 @@ const blog = defineCollection({
         desc: z.string().optional(),
         author: reference("authors"),
         relatedPosts: z.array(reference("blog")).optional(),
+        prevPost: reference("blog").optional(),
+        nextPost: reference("blog").optional(),
         pubDate: z.date(),
         updatedDate: z.date(),
         tags: z.array(z.string()),
         categories: z.array(
             z.object({
-                name: z.string(), // Main category (required)
+                name: z.string(), // Parent category (required)
                 subcategories: z.array(z.string()).optional(), // Sub cate (optional)
             })
         ),

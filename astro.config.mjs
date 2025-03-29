@@ -8,13 +8,16 @@ import rehypeAutolinkHeadings from "rehype-autolink-headings";
 export default defineConfig({
     site: "https://ossilv.github.io",
     markdown: {
+        syntaxHighlight: {
+            type: "shiki",
+        },
+        shikiConfig: {
+            wrap: true,
+        },
         rehypePlugins: [
             rehypeSlug, // Tạo slug tự động cho heading
             [rehypeAutolinkHeadings, { behavior: "append" }], // Thêm anchor khi hover
         ],
-        shikiConfig: {
-            wrap: true,
-        },
     },
     vite: {
         plugins: [tailwindcss()],

@@ -2,8 +2,9 @@
 title: "Module RF 2.4GHz NRF24L01+"
 desc: "Tìm hiểu về Module RF 2.4GHz NRF24L01+"
 author: ossilv # references `src/data/authors/ossilv.json`
-relatedPosts:
-    - none
+relatedPosts: []
+prevPost: none
+nextPost: none
 pubDate: 2025-03-20
 updatedDate: 2025-03-20
 tags: ["transceiver", "schemantic", "pinout", "iot", "wireless", "embedded"]

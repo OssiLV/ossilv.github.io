@@ -1,10 +1,29 @@
 ---
 import type { AstroComponentFactory } from "astro/runtime/server/index.js";
 import TagPill from "./TagPill.astro";
+import type { ReferenceDataEntry } from "astro:content";
+import { undefined } from "astro:schema";
+
+export interface IReferencePost {
+    id: string;
+    data: {
+        title: string;
+        desc?: string;
+        author: ReferenceDataEntry<"authors", string>;
+        relatedPosts: ReferenceDataEntry<"blog", string>[];
+        pubDate: Date;
+        updatedDate: Date;
+        tags?: string[];
+        categories: { name: string; subcategories?: string[] }[];
+    };
+    collection: string;
+}
 
 interface Props {
     title: string;
     desc?: string;
+    prevPost?: IReferencePost;
+    nextPost?: IReferencePost;
     pubDate: Date;
     updatedDate: Date;
     tags?: string[];
@@ -15,6 +34,7 @@ interface Props {
     };
     class?: string;
     Content: AstroComponentFactory;
+    relatedPosts?: IReferencePost[];
 }
 
 const {
@@ -25,6 +45,9 @@ const {
     tags,
     author,
     Content,
+    relatedPosts,
+    prevPost,
+    nextPost,
     class: customClass,
 } = Astro.props;
 ---
@@ -70,5 +93,53 @@ const {
 
     <div class="mt-8 break-words px-6 md:px-2 max-w-3xl mx-auto">
         {tags?.map((tag) => <TagPill tag={tag} />)}
+    </div>
+
+    <div class="w-full flex justify-between items-center h-28 gap-2 px-4">
+        {
+            prevPost && (
+                <a
+                    href={`/blog/${prevPost.id}`}
+                    class="group h-full w-full text-center"
+                >
+                    <button
+                        class="hover:bg-slate-100 h-full w-full cursor-pointer rounded-xl 
+                           transition-all hover:scale-105 font-semibold px-4 py-2 
+                           flex flex-col items-center justify-center"
+                    >
+                        <span class="group-hover:underline group-hover:text-blue-500 text-lg">
+                            {prevPost.data.title.length > 26
+                                ? prevPost.data.title.slice(0, 26) + "..."
+                                : prevPost.data.title}
+                        </span>
+                        <p class="text-3xl">«</p>
+                    </button>
+                </a>
+            )
+        }
+
+        {prevPost && nextPost && <div class="border-l h-6 border-gray-400" />}
+
+        {
+            nextPost && (
+                <a
+                    href={`/blog/${nextPost.id}`}
+                    class="group h-full w-full text-center"
+                >
+                    <button
+                        class="hover:bg-slate-100 h-full w-full cursor-pointer rounded-xl 
+                           transition-all hover:scale-105 font-semibold px-4 py-2 
+                           flex flex-col items-center justify-center"
+                    >
+                        <span class="group-hover:underline group-hover:text-blue-500 text-lg">
+                            {nextPost.data.title.length > 26
+                                ? nextPost.data.title.slice(0, 26) + "..."
+                                : nextPost.data.title}
+                        </span>
+                        <p class="text-3xl">»</p>
+                    </button>
+                </a>
+            )
+        }
     </div>
 </div>

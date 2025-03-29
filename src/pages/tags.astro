@@ -10,7 +10,7 @@ const allTags = Array.from(new Set(posts.flatMap((post) => post.data.tags)));
 ---
 
 <Layout>
-    <div class="px-6 md:px-2 max-w-3xl mx-auto">
+    <div class="px-4 md:px-2 max-w-3xl mx-auto">
         <ul>
             {allTags.map((tag) => <TagPill tag={tag} />)}
         </ul>

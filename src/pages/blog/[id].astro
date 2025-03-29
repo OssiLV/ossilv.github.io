@@ -1,7 +1,9 @@
 ---
-import { getCollection, render } from "astro:content";
+import { getCollection, getEntry, render } from "astro:content";
 import Layout from "../../layouts/Layout.astro";
-import ContentMD from "../../components/ContentMD.astro";
+import ContentMD, {
+    type IReferencePost,
+} from "../../components/ContentMD.astro";
 import TableOfContents from "../../components/TableOfContents.astro";
 import CategoriesComponent from "../../components/CategoriesComponent.astro";
 export async function getStaticPaths() {
@@ -15,6 +17,32 @@ const authors = await getCollection("authors");
 
 const { post } = Astro.props;
 const { Content, headings } = await render(post);
+// Check and get prevPost, nextPost
+const getValidPost = async (postRef: any) => {
+    if (!postRef || postRef === "none") return undefined; // Tránh trả về null
+    const postId = typeof postRef === "string" ? postRef : postRef.id;
+
+    const entry = await getEntry("blog", postId);
+    if (!entry) return undefined;
+
+    return {
+        id: entry.id,
+        data: {
+            title: entry.data.title,
+            desc: entry.data.desc || "",
+            author: entry.data.author,
+            relatedPosts: entry.data.relatedPosts || [],
+            pubDate: entry.data.pubDate,
+            updatedDate: entry.data.updatedDate,
+            tags: entry.data.tags || [],
+            categories: entry.data.categories || [],
+        },
+        collection: entry.collection,
+    } satisfies IReferencePost;
+};
+
+const prevPost = await getValidPost(post.data.prevPost);
+const nextPost = await getValidPost(post.data.nextPost);
 ---
 
 <Layout>
@@ -35,6 +63,8 @@ const { Content, headings } = await render(post);
                 tags={post.data.tags}
                 pubDate={post.data.pubDate}
                 updatedDate={post.data.updatedDate}
+                nextPost={nextPost as IReferencePost | undefined}
+                prevPost={prevPost as IReferencePost | undefined}
             />
         </div>
     </div>
