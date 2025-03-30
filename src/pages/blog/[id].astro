@@ -63,9 +63,56 @@ const nextPost = await getValidPost(post.data.nextPost);
                 tags={post.data.tags}
                 pubDate={post.data.pubDate}
                 updatedDate={post.data.updatedDate}
-                nextPost={nextPost as IReferencePost | undefined}
-                prevPost={prevPost as IReferencePost | undefined}
             />
         </div>
+    </div>
+    <div
+        class="flex justify-center gap-1 items-center rounded-md break-words px-6 md:px-2 max-w-3xl mx-auto my-4 p-2"
+    >
+        {
+            prevPost && (
+                <a
+                    href={`/blog/${prevPost.id}`}
+                    class="group h-full w-full text-center"
+                >
+                    <button
+                        class="hover:bg-gray-50 h-full w-full cursor-pointer rounded-xl 
+                           transition-all hover:scale-105 font-semibold px-4 py-2 
+                           flex flex-col items-center justify-center"
+                    >
+                        <span class="group-hover:underline group-hover:text-blue-500 text-lg">
+                            {prevPost.data.title.length > 26
+                                ? prevPost.data.title.slice(0, 26) + "..."
+                                : prevPost.data.title}
+                        </span>
+                        <p class="text-3xl">«</p>
+                    </button>
+                </a>
+            )
+        }
+
+        {prevPost && nextPost && <div class="border-l h-6 border-gray-400" />}
+
+        {
+            nextPost && (
+                <a
+                    href={`/blog/${nextPost.id}`}
+                    class="group h-full w-full text-center"
+                >
+                    <button
+                        class="hover:bg-gray-50 h-full w-full cursor-pointer rounded-xl 
+                           transition-all hover:scale-105 font-semibold px-4 py-2 
+                           flex flex-col items-center justify-center"
+                    >
+                        <span class="group-hover:underline group-hover:text-blue-500 text-lg">
+                            {nextPost.data.title.length > 26
+                                ? nextPost.data.title.slice(0, 26) + "..."
+                                : nextPost.data.title}
+                        </span>
+                        <p class="text-3xl">»</p>
+                    </button>
+                </a>
+            )
+        }
     </div>
 </Layout>

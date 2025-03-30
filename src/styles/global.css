@@ -16,3 +16,23 @@
 .prose h3:hover a::after {
     opacity: 0.5;
 }
+
+/* Chỉ áp dụng cho code inline */
+code {
+    @apply bg-gray-200 text-gray-800 px-1 py-0.5 rounded font-mono text-sm;
+}
+
+/* Đảm bảo code block hiển thị đúng */
+pre {
+    @apply bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto;
+}
+
+pre code {
+    @apply bg-transparent text-inherit;
+}
+
+/* Xóa dấu ` nhưng không tạo khoảng trắng */
+code::before,
+code::after {
+    content: "";
+}
