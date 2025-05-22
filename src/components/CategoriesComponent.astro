@@ -28,7 +28,9 @@ posts.forEach((post) => {
 });
 
 // Convert object to array to render
-const categories = Object.entries(categoryCounts);
+const categories = Object.entries(categoryCounts).sort(([a], [b]) =>
+    a.localeCompare(b)
+);
 ---
 
 <div>

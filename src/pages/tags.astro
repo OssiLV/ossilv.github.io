@@ -6,7 +6,9 @@ import TagPill from "../components/TagPill.astro";
 const posts = await getCollection("blog");
 
 // Lấy danh sách tất cả các tags (không trùng lặp)
-const allTags = Array.from(new Set(posts.flatMap((post) => post.data.tags)));
+const allTags = Array.from(
+    new Set(posts.flatMap((post) => post.data.tags))
+).sort(([a], [b]) => a.localeCompare(b));
 ---
 
 <Layout>
