@@ -15,7 +15,7 @@ categories:
 
 ---
 
-[Trở về DevOps Ultimate](devops_ultimate)
+[Trở về DevOps Ultimate](/blog/devops)
 
 ---
 

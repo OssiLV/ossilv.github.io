@@ -14,8 +14,8 @@ categories:
 ---
 
 # Phần 1: Hiểu biết về DevOps và quy trình DevOps
-- Bài 1: [DevOps là gì và các công cụ](devops_p1_b1)
-- Bài 2: [Phát triển liên tục](devops_p1_b2)
-- Bài 3: [Thử nghiệm liên tục](devops_p1_b3)
-- Bài 4: [Tích hợp liên tục](devops_p1_b4)
+- Bài 1: [DevOps là gì và các công cụ](/blog/devops/devops_p1_b1)
+- Bài 2: [Phát triển liên tục](/blog/devops/devops_p1_b2)
+- Bài 3: [Thử nghiệm liên tục](/blog/devops/devops_p1_b3)
+- Bài 4: [Tích hợp liên tục](/blog/devops/devops_p1_b4)
 

@@ -22,22 +22,19 @@ const authors = await getCollection("authors");
     <div class="px-4 lg:px-44 grid grid-cols-1 gap-4 lg:grid-cols-3">
         {
             posts.map((post) => (
-                <BlogCard
-                    id={post.id}
-                    title={post.data.title}
-                    desc={post.data.desc}
-                    pubDate={post.data.pubDate}
-                    updatedDate={post.data.updatedDate}
-                    tags={post.data.tags}
-                    author={
-                        authors.find((a) => a.id === post.data.author.id)?.data
-                    }
-                    data-title={post.data.title.toLowerCase()}
-                    data-tags={JSON.stringify(
-                        post.data.tags.map((tag) => tag.toLowerCase())
-                    )}
-                    class="post-item"
-                />
+                    <BlogCard
+                            id={post.id}
+                            title={post.data.title}
+                            desc={post.data.desc}
+                            pubDate={post.data.pubDate}
+                            updatedDate={post.data.updatedDate}
+                            tags={post.data.tags}
+                            author={
+                                authors.find((a) => a.id === post.data.author.id)?.data
+                            }
+                            class="post-item"
+                    />
+
             ))
         }
     </div>
