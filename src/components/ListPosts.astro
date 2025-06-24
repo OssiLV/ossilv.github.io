@@ -59,7 +59,7 @@ const {
 
         posts.forEach((post) => {
             if (post instanceof HTMLElement) {
-                const title = post.getAttribute("contents-title") || "";
+                const title = post.dataset.title || "";
                 post.style.display = title.includes(query) ? "block" : "none";
             }
         });
