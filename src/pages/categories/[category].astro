@@ -2,6 +2,7 @@
 import { getCollection } from "astro:content";
 import Layout from "../../layouts/Layout.astro";
 import BlogCard from "../../components/BlogCard.astro";
+import ListPost from "../../components/ListPost.astro";
 
 const posts = await getCollection("blog");
 const authors = await getCollection("authors");
@@ -53,63 +54,7 @@ export async function getStaticPaths() {
         <h1 class="mb-1 text-2xl font-bold">
             Category: {category.toUpperCase()}
         </h1>
-        <input
-            type="text"
-            id="titleInput"
-            placeholder="Search by title..."
-            class="w-full p-2 border rounded-md"
-        />
     </div>
 
-    <div class="px-4 lg:px-44 grid grid-cols-1 gap-4 lg:grid-cols-3">
-        {
-            filteredPosts.length > 0 ? (
-                filteredPosts.map((post) => (
-                    <BlogCard
-                        id={post.id}
-                        title={post.data.title}
-                        desc={post.data.desc}
-                        pubDate={post.data.pubDate}
-                        updatedDate={post.data.updatedDate}
-                        tags={post.data.tags}
-                        author={
-                            authors.find((a) => a.id === post.data.author.id)
-                                ?.data
-                        }
-                        data-title={post.data.title.toLowerCase()}
-                        data-tags={JSON.stringify(
-                            post.data.tags.map((tag) => tag.toLowerCase())
-                        )}
-                        class="post-item"
-                    />
-                ))
-            ) : (
-                <p class="text-gray-500 mt-4">No post</p>
-            )
-        }
-    </div>
+    <ListPost posts={filteredPosts} authors={authors} />
 </Layout>
-
-<script>
-    document.addEventListener("DOMContentLoaded", () => {
-        const inputElement = document.getElementById("titleInput");
-        if (inputElement instanceof HTMLInputElement) {
-            inputElement.addEventListener("input", filterPosts);
-        }
-    });
-
-    function filterPosts() {
-        const input = document.getElementById("titleInput");
-        if (!(input instanceof HTMLInputElement)) return;
-
-        const query = input.value.toLowerCase();
-        const posts = document.querySelectorAll(".post-item");
-
-        posts.forEach((post) => {
-            if (post instanceof HTMLElement) {
-                const title = post.getAttribute("data-title") || "";
-                post.style.display = title.includes(query) ? "block" : "none";
-            }
-        });
-    }
-</script>

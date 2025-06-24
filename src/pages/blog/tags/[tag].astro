@@ -77,7 +77,7 @@ const authors = await getCollection("authors");
 
         posts.forEach((post) => {
             if (post instanceof HTMLElement) {
-                const title = post.getAttribute("data-title") || "";
+                const title = post.getAttribute("contents-title") || "";
                 post.style.display = title.includes(query) ? "block" : "none";
             }
         });

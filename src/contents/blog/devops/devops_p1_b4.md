@@ -1,7 +1,7 @@
 ---
 title: "Tích hợp liên tục"
 desc: "__"
-author: ossilv # references `src/data/authors/ossilv.json`
+author: ossilv # references `src/contents/authors/ossilv.json`
 relatedPosts: []
 prevPost: devops_p1_b3
 nextPost: devops_p1_b5

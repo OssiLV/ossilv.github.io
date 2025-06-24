@@ -1,0 +1,67 @@
+---
+import BlogCard from "./BlogCard.astro";
+
+const {
+    posts,
+    authors
+} = Astro.props;
+---
+<div>
+    <!-- Header -->
+    <section class="px-4 lg:px-44 pt-6 pb-2 text-center">
+        <h1 class="text-3xl font-bold mb-2 text-gray-800">📝 Tất cả bài viết</h1>
+        <p class="text-gray-500">Khám phá các bài chia sẻ, hướng dẫn, ghi chú kỹ thuật.</p>
+    </section>
+
+    <!-- Search Input -->
+    <div class="px-4 lg:px-44 my-4">
+        <input
+                type="text"
+                id="titleInput"
+                placeholder="🔍 Tìm theo tiêu đề..."
+                class="w-full p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400 transition"
+        />
+    </div>
+
+    <!-- Danh sách bài viết -->
+    <div class="px-4 lg:px-44 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 pb-10">
+        {
+            posts?.map((post:any) => (
+                    <BlogCard
+                            id={post.id}
+                            title={post.data.title}
+                            desc={post.data.desc}
+                            pubDate={post.data.pubDate}
+                            updatedDate={post.data.updatedDate}
+                            tags={post.data.tags}
+                            author={authors.find((a:any) => a.id === post.data.author.id)?.data}
+                            class="post-item shadow-md rounded-xl border hover:shadow-lg transition-all duration-200"
+                    />
+            ))
+        }
+    </div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const inputElement = document.getElementById("titleInput");
+        if (inputElement instanceof HTMLInputElement) {
+            inputElement.addEventListener("input", filterPosts);
+        }
+    });
+
+    function filterPosts() {
+        const input = document.getElementById("titleInput");
+        if (!(input instanceof HTMLInputElement)) return;
+
+        const query = input.value.toLowerCase();
+        const posts = document.querySelectorAll(".post-item");
+
+        posts.forEach((post) => {
+            if (post instanceof HTMLElement) {
+                const title = post.getAttribute("contents-title") || "";
+                post.style.display = title.includes(query) ? "block" : "none";
+            }
+        });
+    }
+</script>

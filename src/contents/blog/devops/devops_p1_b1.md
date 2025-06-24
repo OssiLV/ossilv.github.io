@@ -1,7 +1,7 @@
 ---
 title: "DevOps là gì và các công cụ"
 desc: "__"
-author: ossilv # references `src/data/authors/ossilv.json`
+author: ossilv # references `src/contents/authors/ossilv.json`
 relatedPosts: []
 prevPost: devops_ultimate
 nextPost: devops_p1_b2

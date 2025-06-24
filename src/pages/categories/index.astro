@@ -33,41 +33,36 @@ const categories = Object.entries(categoryCounts).sort(([a], [b]) =>
     a.localeCompare(b)
 );
 ---
-
 <Layout>
-    <div class="px-6 md:px-2 max-w-3xl mx-auto">
-        <ul>
+    <div class="px-6 md:px-2 max-w-3xl mx-auto py-6">
+        <ul class="space-y-4">
             {
                 categories.map(([category, data]) => (
-                    <li>
-                        <a
-                            href={`/categories/${category.toLowerCase()}`}
-                            class="font-semibold  hover:text-blue-500 transition-all hover:underline break-words max-w-full block hover:scale-105"
-                        >
-                            {category}
-                            <span class="text-black ">({data.count})</span>
-                        </a>
+                        <li>
+                            <a
+                                    href={`/categories/${category.toLowerCase()}`}
+                                    class="text-lg font-semibold text-purple-800 hover:text-purple-600 transition-all hover:underline block"
+                            >
+                                {category}
+                                <span class="ml-1 text-gray-500">({data.count})</span>
+                            </a>
 
-                        {Object.keys(data.subcategories).length > 0 && (
-                            <ul>
-                                {Object.entries(data.subcategories).map(
-                                    ([sub, count]) => (
-                                        <li class="pl-4">
-                                            <a
-                                                href={`/categories/${sub.toLowerCase()}`}
-                                                class=" hover:text-blue-500 transition-all hover:underline break-words max-w-full block hover:scale-105 "
-                                            >
-                                                {sub}{" "}
-                                                <span class="text-black">
-                                                    ({count})
-                                                </span>
-                                            </a>
-                                        </li>
-                                    )
-                                )}
-                            </ul>
-                        )}
-                    </li>
+                            {Object.keys(data.subcategories).length > 0 && (
+                                    <ul class="mt-2 ml-4 space-y-2 border-l border-gray-200 pl-4">
+                                        {Object.entries(data.subcategories).map(([sub, count]) => (
+                                                <li>
+                                                    <a
+                                                            href={`/categories/${sub.toLowerCase()}`}
+                                                            class="text-sm text-purple-500 hover:text-purple-500 transition-all hover:underline block"
+                                                    >
+                                                        {sub}
+                                                        <span class="ml-1 text-gray-400">({count})</span>
+                                                    </a>
+                                                </li>
+                                        ))}
+                                    </ul>
+                            )}
+                        </li>
                 ))
             }
         </ul>

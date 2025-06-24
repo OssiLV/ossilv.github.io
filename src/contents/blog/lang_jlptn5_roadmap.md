@@ -1,7 +1,7 @@
 ---
 title: "Roadmap JLPT N5"
 desc: "Lộ trình học N5"
-author: ossilv # references `src/data/authors/ossilv.json`
+author: ossilv # references `src/contents/authors/ossilv.json`
 relatedPosts: []
 prevPost: none
 nextPost: none

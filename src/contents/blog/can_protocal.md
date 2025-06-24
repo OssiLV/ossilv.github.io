@@ -1,7 +1,7 @@
 ---
 title: "CAN (Control Area Network)"
 desc: "Những gì cần biết về CAN"
-author: ossilv # references `src/data/authors/ossilv.json`
+author: ossilv # references `src/contents/authors/ossilv.json`
 relatedPosts: []
 prevPost: none
 nextPost: none

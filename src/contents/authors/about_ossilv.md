@@ -1,7 +1,7 @@
 ---
 title: "About Truong"
 desc: "Enthusiastic Technology explorer!"
-author: ossilv # references `src/data/authors/ossilv.json`
+author: ossilv # references `src/contents/authors/ossilv.json`
 relatedPosts:
     - none
 pubDate: 2025-03-18

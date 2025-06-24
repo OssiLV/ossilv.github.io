@@ -1,6 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Content from "../data/authors/about_ossilv.md";
+import Content from "../contents/authors/about_ossilv.md";
 import ContentMD from '../components/ContentMD.astro';
 import { getCollection } from 'astro:content';
 
@@ -17,7 +17,7 @@ interface ContentMetadataProps {
 const authors = await getCollection("authors");
 
 async function getContentMetadata() {
-	const ContentFrontmatter = await Astro.glob("../data/authors/about_ossilv.md");
+	const ContentFrontmatter = await Astro.glob("../contents/authors/about_ossilv.md");
 	return ContentFrontmatter.length > 0
 		? ContentFrontmatter[0].frontmatter as ContentMetadataProps
 		: null;
