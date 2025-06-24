@@ -1,7 +1,7 @@
 ---
 import { getCollection, getEntry, render } from "astro:content";
 import Layout from "../../layouts/Layout.astro";
-import ContentMD, {
+import PostCard, {
     type IReferencePost,
 } from "../../components/ContentMD.astro";
 import TableOfContents from "../../components/TableOfContents.astro";
@@ -54,7 +54,7 @@ const nextPost = await getValidPost(post.data.nextPost);
         </div>
 
         <div class="flex-1 xl:flex">
-            <ContentMD
+            <PostCard
                 class="xl:ml-36"
                 Content={Content}
                 title={post.data.title}

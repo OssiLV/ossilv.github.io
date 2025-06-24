@@ -1,8 +1,8 @@
 ---
 import { getCollection } from "astro:content";
 import Layout from "../../layouts/Layout.astro";
-import BlogCard from "../../components/BlogCard.astro";
-import ListPost from "../../components/ListPost.astro";
+import PostCard from "../../components/PostCard.astro";
+import ListPosts from "../../components/ListPosts.astro";
 
 const posts = await getCollection("blog");
 const authors = await getCollection("authors");
@@ -56,5 +56,5 @@ export async function getStaticPaths() {
         </h1>
     </div>
 
-    <ListPost posts={filteredPosts} authors={authors} />
+    <ListPosts posts={filteredPosts} authors={authors} />
 </Layout>

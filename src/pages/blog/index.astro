@@ -1,14 +1,14 @@
 ---
 import { getCollection } from "astro:content";
-import BlogCard from "../../components/BlogCard.astro";
+import PostCard from "../../components/PostCard.astro";
 import Layout from "../../layouts/Layout.astro";
-import ListPost from "../../components/ListPost.astro";
+import ListPosts from "../../components/ListPosts.astro";
 
 const posts = await getCollection("blog");
 const authors = await getCollection("authors");
 ---
 
 <Layout>
-    <ListPost posts={posts} authors={authors} />
+    <ListPosts posts={posts} authors={authors} />
 </Layout>
 
