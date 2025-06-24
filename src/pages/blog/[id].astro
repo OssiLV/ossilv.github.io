@@ -48,12 +48,12 @@ const nextPost = await getValidPost(post.data.nextPost);
 <Layout>
     <TableOfContents headings={headings} />
 
-    <div class="flex flex-col xl:flex-row">
+    <div class="flex flex-col xl:flex-row xl:px-32">
         <div class="hidden xl:block min-w-72 max-w-72 pl-8">
             <CategoriesComponent />
         </div>
 
-        <div class="flex-1 xl:flex justify-start">
+        <div class="flex-1 xl:flex">
             <ContentMD
                 class="xl:ml-36"
                 Content={Content}
@@ -85,7 +85,7 @@ const nextPost = await getValidPost(post.data.nextPost);
                                 ? prevPost.data.title.slice(0, 26) + "..."
                                 : prevPost.data.title}
                         </span>
-                        <p class="text-3xl">«</p>
+                        <span class="text-3xl">«</span>
                     </button>
                 </a>
             )
@@ -109,7 +109,7 @@ const nextPost = await getValidPost(post.data.nextPost);
                                 ? nextPost.data.title.slice(0, 26) + "..."
                                 : nextPost.data.title}
                         </span>
-                        <p class="text-3xl">»</p>
+                        <span class="text-3xl">»</span>
                     </button>
                 </a>
             )

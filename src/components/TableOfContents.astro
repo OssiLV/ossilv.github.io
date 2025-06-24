@@ -13,14 +13,13 @@ const { headings } = Astro.props;
 
 <button
     id="toggle_toc"
-    class="fixed right-9 top-20 border-1 bg-slate-300/20 border-gray-500 rounded-md cursor-pointer hover:bg-slate-400/30 transition-colors"
+    class="fixed right-9 xl:right-94 top-20 border-1 bg-slate-300/20 border-gray-500 rounded-md cursor-pointer hover:bg-slate-400/30 transition-colors"
     aria-label="Toggle Table of Contents"
     ><svg
         xmlns="http://www.w3.org/2000/svg"
         width="34px"
         height="34px"
         viewBox="0 0 24 24"
-        fill="none"
     >
         <path
             d="M4 6H20M4 12H20M4 18H20"
@@ -33,7 +32,7 @@ const { headings } = Astro.props;
 
 <aside
     id="toc"
-    class="hidden overflow-auto fixed top-30 right-1 w-96 p-4 bg-gray-100 rounded-lg shadow-md max-h-[80vh] select-none"
+    class="hidden overflow-auto fixed top-30 right-1 xl:right-9 w-96 p-4 bg-gray-100 rounded-lg shadow-md max-h-[80vh] select-none"
 >
     <h2
         class="scroll-m-20 pb-2 text-xl font-semibold tracking-tight first:mt-0"
