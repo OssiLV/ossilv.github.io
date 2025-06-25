@@ -2,8 +2,8 @@
 title: "DevOps MasterClass: Terraform Kubernetes Ansible Docker"
 desc: "DevOps with Jenkins Terraform GIT Docker Maven Kubernetes Ansible Automation Docker Swarm, DevOps Real world Exercises"
 author: "ossilv"
-pubDate: 2024-01-01
-updatedDate: 2024-06-01
+pubDate: 2025-06-25
+updatedDate: 2025-06-25
 level: "beginner"
 whatIsYouWillLearn: [
     "An understanding of DevOps and the modern DevOps Tools Docker, Kubernetes, Jenkins, Docker Swarm, Kubernetes Helm.",

@@ -1,25 +1,11 @@
 ---
-title: "Tích hợp liên tục"
-desc: "__"
-author: ossilv # references `src/contents/authors/ossilv.json`
-relatedPosts: []
-prevPost: devops_p1_b3
-nextPost: devops_p1_b5
-pubDate: 2025-06-24
-updatedDate: 2025-06-24
-tags: ["DevOps"]
-categories:
-    - name: "Software Development Methodologies"
-      subcategories: ["DevOps"]
+course: depops_ultimate
+module: module_1
+title: "Tích hợp liên tục (Continuous Integration)"
+order: 4
+pubDate: 2025-06-25
+updatedDate: 2025-06-25
 ---
-
----
-
-[Trở về DevOps Ultimate](/blog/devops)
-
----
-
-# Tích hợp liên tục (Continuous Integration)
 
 ## Giới thiệu
 

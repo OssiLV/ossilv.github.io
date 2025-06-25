@@ -1,25 +1,11 @@
 ---
+course: depops_ultimate
+module: module_1
 title: "DevOps là gì và các công cụ"
-desc: "__"
-author: ossilv # references `src/contents/authors/ossilv.json`
-relatedPosts: []
-prevPost: devops_ultimate
-nextPost: devops_p1_b2
-pubDate: 2025-06-24
-updatedDate: 2025-06-24
-tags: ["DevOps"]
-categories:
-    - name: "Software Development Methodologies"
-      subcategories: ["DevOps"]
+order: 1
+pubDate: 2025-06-25
+updatedDate: 2025-06-25
 ---
-
----
-
-[Trở về DevOps Ultimate](/blog/devops)
-
----
-
-# DevOps là gì và các công cụ
 
 ## 1. DevOps là gì?
 

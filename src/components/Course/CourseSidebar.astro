@@ -1,49 +1,60 @@
 ---
 import type { CollectionEntry } from "astro:content";
 
+type ModuleWithLessons = CollectionEntry<"modules"> & {
+    lessons: CollectionEntry<"lessons">[];
+};
+
 interface Props {
-    modulesMap: { [key: string]: CollectionEntry<"lessons">[] };
-    currentCourseId: string;
+    relatedModulesWithLessons: ModuleWithLessons[];
+    currentCourse: string;
     lessonId?: string;
 }
 
-const { modulesMap, currentCourseId, lessonId } = Astro.props;
+const { relatedModulesWithLessons, currentCourse, lessonId } = Astro.props;
 ---
 
-<aside class="lg:block hidden overflow-y-auto max-h-screen pr-2" id="course-sidebar">
-    <h2 class="text-lg font-semibold mb-4 text-gray-700">📚 Nội dung khóa học</h2>
+<aside
+        class="hidden lg:block overflow-y-auto max-h-screen pr-3"
+        id="course-sidebar"
+>
+    <h2 class="text-lg font-semibold mb-6 text-gray-700 dark:text-gray-300">
+        📚 Nội dung khóa học
+    </h2>
     <div class="space-y-4">
-        {Object.entries(modulesMap).map(([moduleName, lessons]) => (
-                <details class="rounded-md">
-                    <summary class="cursor-pointer font-semibold px-4 text-gray-800">
-                        {moduleName.replace("_", " ").toUpperCase()}
-                    </summary>
-                    <ul class="mt-2 ml-4 pb-2 space-y-2 border-l border-gray-200 pl-4">
-                        {lessons
-                            .sort((a, b) => a.data.order - b.data.order)
-                            .map((l) => (
-                                    <li>
-                                        <a
-                                                href={`/courses/${currentCourseId}/${l.data.module}/${l.id.split("/").pop()}`}
-                                                class={`text-sm ${l.id === lessonId ? 'text-purple-700 font-semibold' : 'text-purple-500'} hover:text-purple-500 transition-all hover:underline block`}
-                                        >
-                                            {l.data.title}
-                                        </a>
-                                    </li>
-                            ))}
-                    </ul>
-                </details>
-        ))}
+        {relatedModulesWithLessons
+            .sort((a, b) => a.data.order - b.data.order)
+            .map((module) => (
+                    <details class="rounded-lg bg-gray-100 dark:bg-gray-800" open>
+                        <summary class="cursor-pointer font-medium px-4 py-2 text-gray-800 dark:text-gray-200">
+                            {module.data.title.toUpperCase()}
+                        </summary>
+                        <ul class="mt-2 ml-4 pb-2 space-y-2 dark:border-gray-700 pl-4">
+                            {module.lessons
+                                .sort((a, b) => a.data.order - b.data.order)
+                                .map((l) => (
+                                        <li>
+                                            <a
+                                                    href={`/courses/${currentCourse}/${module.id.split("/").pop()}/${l.id.split("/").pop()}`}
+                                                    class={`text-sm transition-colors hover:text-gray-600 dark:hover:text-blue-400 ${l.id === lessonId ? "text-gray-700 dark:text-blue-500 font-semibold" : "text-gray-500 dark:text-blue-400"}`}
+                                            >
+                                                {l.data.title}
+                                            </a>
+                                        </li>
+                                ))}
+                        </ul>
+                    </details>
+            ))}
     </div>
 </aside>
 
 <button
-        class="lg:hidden fixed top-20 right-9 z-50 p-2 border-1 bg-slate-300/20 border-gray-500 rounded-md cursor-pointer hover:bg-slate-400/30 transition-colors"
+        class="lg:hidden fixed top-20 right-4 z-50 p-2 bg-gray-100/30 dark:bg-gray-800/30 border border-gray-300 dark:border-gray-600 rounded-md hover:bg-gray-200/40 dark:hover:bg-gray-700/40 transition-colors"
         id="toggle-sidebar"
         aria-label="Toggle course sidebar"
 >
     <svg
-            class="w-6 h-6"
+            class="w-6 h-6 text-gray-600 dark:text-gray-300"
             stroke="currentColor"
             viewBox="0 0 24 24"
             xmlns="http://www.w3.org/2000/svg"
@@ -58,49 +69,53 @@ const { modulesMap, currentCourseId, lessonId } = Astro.props;
 </button>
 
 <style>
-    /* Hide sidebar by default on mobile */
-    #course-sidebar {
-        display: none;
-    }
-
-    /* Show sidebar when active class is added */
+    /* Ensure sidebar is visible when active on mobile */
     #course-sidebar.active {
-        display: block;
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        max-width: 300px;
-        height: 100%;
-        background: white;
-        z-index: 40;
-        padding: 1rem;
-        box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
-    }
-
-    /* Ensure button is visible on mobile */
-    @media (max-width: 1023px) {
-        #toggle-sidebar {
-            display: block;
-        }
-    }
-
-    /* Hide button on desktop */
-    @media (min-width: 1024px) {
-        #toggle-sidebar {
-            display: none;
-        }
-        #course-sidebar {
-            display: block;
-        }
+        display: block !important;
     }
 </style>
 
 <script>
     document.getElementById("toggle-sidebar")?.addEventListener("click", () => {
+        console.log("Toggle button clicked"); // Debug log
         const sidebar = document.getElementById("course-sidebar");
         if (sidebar) {
+            console.log("Sidebar found, toggling active class"); // Debug log
             sidebar.classList.toggle("active");
+            if (sidebar.classList.contains("active")) {
+                sidebar.classList.add(
+                    "block",
+                    "fixed",
+                    "top-0",
+                    "left-0",
+                    "w-full",
+                    "max-w-[300px]",
+                    "h-full",
+                    "bg-white",
+                    "dark:bg-gray-900",
+                    "z-40",
+                    "p-4",
+                    "shadow-lg"
+                );
+            } else {
+                sidebar.classList.remove(
+                    "block",
+                    "fixed",
+                    "top-0",
+                    "left-0",
+                    "w-full",
+                    "max-w-[300px]",
+                    "h-full",
+                    "bg-white",
+                    "dark:bg-gray-900",
+                    "z-40",
+                    "p-4",
+                    "shadow-lg"
+                );
+                sidebar.classList.add("hidden", "lg:block");
+            }
+        } else {
+            console.log("Sidebar element not found"); // Debug log
         }
     });
 </script>

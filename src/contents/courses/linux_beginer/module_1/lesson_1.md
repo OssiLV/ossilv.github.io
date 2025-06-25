@@ -1,6 +1,6 @@
 ---
 course: linux_beginer
-module: module_1_understand_git
+module: module_1
 title: "Getting Started with Linux"
 desc: "An introductory lesson to understand the fundamentals of Depops."
 order: 1

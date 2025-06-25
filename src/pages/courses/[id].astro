@@ -2,7 +2,8 @@
 import { getCollection, render, type CollectionEntry } from "astro:content";
 import Layout from "../../layouts/Layout.astro";
 import CourseSidebar from "../../components/Course/CourseSidebar.astro";
-import CourseNav from "../../components/Course/CourseNav.astro";
+import CourseTOC from "../../components/Course/CourseTOC.astro";
+import CourseContent from "../../components/Course/CourseContent.astro";
 
 export async function getStaticPaths() {
     const courses = await getCollection("courses");
@@ -15,90 +16,40 @@ export async function getStaticPaths() {
 const { course } = Astro.props as { course: CollectionEntry<"courses"> };
 const { Content, headings } = await render(course);
 const authors = await getCollection("authors");
+const modules = await getCollection("modules", (m) => m.data.course.id === course.id);
 const lessons = await getCollection("lessons");
 
-const currentCourseId = course.id;
-const relatedLessons = lessons.filter(
-    (lesson) => lesson.data.course.id === currentCourseId
-);
+const currentCourse = course.id;
 
-// Nhóm bài học theo module
-const modulesMap: { [key: string]: CollectionEntry<"lessons">[] } = {};
-relatedLessons.forEach((lesson) => {
-    const module = lesson.data.module;
-    if (!modulesMap[module]) modulesMap[module] = [];
-    modulesMap[module].push(lesson);
+// Construct relatedModulesWithLessons
+const relatedModulesWithLessons = modules.map((module) => {
+    const moduleId = module.id.split("/").at(-2);
+    const moduleLessons = lessons
+        .filter((lesson) => lesson.data.module.id === moduleId && lesson.data.course.id === currentCourse)
+        .sort((a, b) => a.data.order - b.data.order);
+    // Debug: Log lessons for each module
+    return {
+        ...module,
+        lessons: moduleLessons,
+    };
 });
 
-// Tìm tác giả
+// Find author
 const author = authors.find((a) => a.id === course.data.author.id)?.data;
 ---
 
 <Layout>
     <div class="grid grid-cols-1 lg:grid-cols-[300px_1fr_250px] gap-4 px-4 py-6">
         <!-- CỘT TRÁI -->
-        <CourseSidebar modulesMap={modulesMap} currentCourseId={currentCourseId} />
-
+        <CourseSidebar
+                relatedModulesWithLessons={relatedModulesWithLessons}
+                currentCourse={currentCourse}
+        />
 
         <!-- CỘT GIỮA -->
-        <main class="lg:overflow-y-auto max-h-screen px-2">
-            <article id="main-content">
-                <CourseNav course={course} isMainCourse={true}/>
-
-                <h1 class="text-3xl font-bold text-gray-800 mt-4">{course.data.title}</h1>
-                {course.data.desc && <p class="text-gray-600 mt-2">{course.data.desc}</p>}
-
-                <div class="mt-4 text-sm text-gray-500 space-y-1">
-                    {course.data.updatedDate && (
-                            <p>🛠 Cập nhật: {course.data.updatedDate.toLocaleDateString("vi-VN")}</p>
-                    )}
-                    {course.data.level && <p>📈 Trình độ: {course.data.level}</p>}
-                </div>
-
-                {author && (
-                        <div class="mt-4 text-sm text-gray-700">
-                            👨‍🏫 Tác giả:
-                            <a
-                                    class="text-blue-600 hover:underline"
-                                    href={author.sourceURL ?? "#"}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                            >
-                                {author.name}
-                            </a>
-                        </div>
-                )}
-
-                {(course.data.whatIsYouWillLearn?.length ?? 0) > 0 && (
-                        <div class="mt-6 border border-blue-200 bg-blue-50 rounded-xl p-5 shadow-sm">
-                            <h2 class="text-lg font-semibold text-blue-800 mb-3">📘 Bạn sẽ học được:</h2>
-                            <ul class="list-none space-y-2">
-                                {course.data.whatIsYouWillLearn!.map((item) => (
-                                        <li class="flex items-start gap-2 text-gray-800">
-                                            <span class="text-green-600 text-xl leading-5">✔</span>
-                                            <span>{item}</span>
-                                        </li>
-                                ))}
-                            </ul>
-                        </div>
-                )}
-
-                <div class="prose prose-blue max-w-none mt-8">
-                    <Content />
-                </div>
-            </article>
-        </main>
+        <CourseContent course={course} Content={Content} isMainCourse={true} author={author} />
 
         <!-- CỘT PHẢI -->
-        <aside class="hidden lg:block overflow-y-auto max-h-screen pl-4">
-            <h2 class="text-lg font-semibold text-gray-700 mb-2">📑 Mục lục</h2>
-            <ul class="text-sm text-gray-600 space-y-1">
-                {headings.map((h) => (
-                        <li class={`pl-${h.depth * 2}`}>
-                            <a href={`#${h.slug}`} class="hover:text-blue-600 hover:underline">{h.text}</a>
-                        </li>
-                ))}
-            </ul>
-        </aside>
+        <CourseTOC headings={headings} />
     </div>
 </Layout>

@@ -37,7 +37,7 @@ const courses = defineCollection({
     schema: z.object({
         title: z.string(),
         desc: z.string().optional(),
-        author: reference("authors"), // Giả sử bạn có collection authors
+        author: reference("authors"),
         pubDate: z.date(),
         updatedDate: z.date().optional(),
         level: z.enum(["beginner", "intermediate", "advanced"]).default("beginner"),
@@ -46,12 +46,22 @@ const courses = defineCollection({
     }),
 });
 
+// Collection cho các modules (lấy các file module_*.md)
+const modules = defineCollection({
+    loader: glob({ pattern: "**/module_*.md", base: "./src/contents/courses" }),
+    schema: z.object({
+        course: reference("courses"), // Tham chiếu đến khóa học
+        title: z.string(), // Tiêu đề module
+        order: z.number(), // Thứ tự module trong khóa học
+    }),
+});
+
 // Collection cho các bài học (lấy các file lesson_*.md)
 const lessons = defineCollection({
     loader: glob({ pattern: "**/lesson_*.md", base: "./src/contents/courses" }),
     schema: z.object({
-        course: reference("courses"), // Tham chiếu đến khóa học
-        module: z.string(), // Tên module, ví dụ: "module_1_understand_git"
+        module: reference("modules"),
+        course: reference("courses"),
         title: z.string(),
         order: z.number(), // Thứ tự bài học trong module
         pubDate: z.date(),
@@ -60,4 +70,4 @@ const lessons = defineCollection({
 });
 
 
-export const collections = { blog, authors, courses, lessons };
+export const collections = { blog, authors, courses, modules,lessons };
