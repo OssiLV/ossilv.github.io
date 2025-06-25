@@ -1,0 +1,106 @@
+---
+import type { CollectionEntry } from "astro:content";
+
+interface Props {
+    modulesMap: { [key: string]: CollectionEntry<"lessons">[] };
+    currentCourseId: string;
+    lessonId?: string;
+}
+
+const { modulesMap, currentCourseId, lessonId } = Astro.props;
+---
+
+<aside class="lg:block hidden overflow-y-auto max-h-screen pr-2" id="course-sidebar">
+    <h2 class="text-lg font-semibold mb-4 text-gray-700">📚 Nội dung khóa học</h2>
+    <div class="space-y-4">
+        {Object.entries(modulesMap).map(([moduleName, lessons]) => (
+                <details class="rounded-md">
+                    <summary class="cursor-pointer font-semibold px-4 text-gray-800">
+                        {moduleName.replace("_", " ").toUpperCase()}
+                    </summary>
+                    <ul class="mt-2 ml-4 pb-2 space-y-2 border-l border-gray-200 pl-4">
+                        {lessons
+                            .sort((a, b) => a.data.order - b.data.order)
+                            .map((l) => (
+                                    <li>
+                                        <a
+                                                href={`/courses/${currentCourseId}/${l.data.module}/${l.id.split("/").pop()}`}
+                                                class={`text-sm ${l.id === lessonId ? 'text-purple-700 font-semibold' : 'text-purple-500'} hover:text-purple-500 transition-all hover:underline block`}
+                                        >
+                                            {l.data.title}
+                                        </a>
+                                    </li>
+                            ))}
+                    </ul>
+                </details>
+        ))}
+    </div>
+</aside>
+
+<button
+        class="lg:hidden fixed top-20 right-9 z-50 p-2 border-1 bg-slate-300/20 border-gray-500 rounded-md cursor-pointer hover:bg-slate-400/30 transition-colors"
+        id="toggle-sidebar"
+        aria-label="Toggle course sidebar"
+>
+    <svg
+            class="w-6 h-6"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+    >
+        <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M4 6h16M4 12h16M4 18h16"
+        ></path>
+    </svg>
+</button>
+
+<style>
+    /* Hide sidebar by default on mobile */
+    #course-sidebar {
+        display: none;
+    }
+
+    /* Show sidebar when active class is added */
+    #course-sidebar.active {
+        display: block;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        max-width: 300px;
+        height: 100%;
+        background: white;
+        z-index: 40;
+        padding: 1rem;
+        box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Ensure button is visible on mobile */
+    @media (max-width: 1023px) {
+        #toggle-sidebar {
+            display: block;
+        }
+    }
+
+    /* Hide button on desktop */
+    @media (min-width: 1024px) {
+        #toggle-sidebar {
+            display: none;
+        }
+        #course-sidebar {
+            display: block;
+        }
+    }
+</style>
+
+<script>
+    document.getElementById("toggle-sidebar")?.addEventListener("click", () => {
+        const sidebar = document.getElementById("course-sidebar");
+        if (sidebar) {
+            sidebar.classList.toggle("active");
+        }
+    });
+</script>

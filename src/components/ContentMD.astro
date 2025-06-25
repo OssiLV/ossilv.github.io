@@ -33,7 +33,6 @@ interface Props {
     };
     class?: string;
     Content: AstroComponentFactory;
-    relatedPosts?: IReferencePost[];
 }
 
 const {
@@ -44,7 +43,6 @@ const {
     tags,
     author,
     Content,
-    relatedPosts,
     class: customClass,
 } = Astro.props;
 ---

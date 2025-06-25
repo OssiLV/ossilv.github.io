@@ -8,6 +8,7 @@ let links = [
         href: "/categories",
         hiddenForScreenLargerMobile: true,
     },
+    { name: "Courses", href: "/courses", hiddenForScreenLargerMobile: false },
 ];
 ---
 
@@ -26,12 +27,11 @@ let links = [
         <ul class="flex space-x-6" id="menu">
             {
                 links.map((link) => (
-                    <li>
+                    <li class={`${link.hiddenForScreenLargerMobile ? "xl:hidden" : "block"}`}>
                         <a
                             href={link.href}
                             class={`hover:text-gray-600 
-                                ${Astro.url.pathname === link.href ? "underline font-semibold" : ""} 
-                                ${link.hiddenForScreenLargerMobile ? "xl:hidden" : "block"}
+                                ${Astro.url.pathname === link.href ? "underline font-semibold" : ""}
                             `}
                         >
                             {link.name}

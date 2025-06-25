@@ -1,0 +1,49 @@
+---
+import type { CollectionEntry } from "astro:content";
+
+interface Props {
+    course: CollectionEntry<"courses"> | null | undefined;
+    isMainCourse: boolean;
+    module?: string;
+    lesson?: CollectionEntry<"lessons">;
+}
+
+const { course, isMainCourse, module, lesson } = Astro.props as Props;
+---
+
+{
+    isMainCourse ? (
+    <a href="/courses" class="text-sm text-blue-500 hover:underline">
+        ← Quay lại danh sách khóa học
+    </a>
+        ) : (
+    <nav class="text-sm text-blue-500 space-x-2">
+        <a href="/courses" class="hover:underline">Khóa học</a>
+        {course ? (
+                <>
+                    <span>›</span>
+                    <a href={`/courses/${course.id}`} class="hover:underline">
+                        {course.data.title}
+                    </a>
+                    {module && (
+                            <>
+                                <span>›</span>
+                                <span>{module.replace("_", " ").toUpperCase()}</span>
+                            </>
+                    )}
+                    {lesson && (
+                            <>
+                                <span>›</span>
+                                <span>{lesson.data.title}</span>
+                            </>
+                    )}
+                </>
+        ) : (
+                <>
+                    <span>›</span>
+                    <span>Khóa học không tìm thấy</span>
+                </>
+        )}
+    </nav>
+        )
+    }

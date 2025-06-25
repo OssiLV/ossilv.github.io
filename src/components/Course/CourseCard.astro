@@ -1,0 +1,46 @@
+---
+interface Props {
+    title: string;
+    desc?: string;
+    pubDate: Date;
+    updatedDate?: Date;
+    level?: string;
+    duration?: string;
+    tags?: string[];
+    href: string;
+}
+const { title, desc, pubDate, updatedDate, level, duration, href } = Astro.props;
+---
+
+<a href={href} class="block rounded-2xl border border-gray-200 shadow-sm hover:shadow-md hover:scale-[1.01] transition-all bg-white p-5 space-y-3">
+    <!-- Title -->
+    <h2 class="text-xl font-semibold text-blue-800">{title}</h2>
+
+    <!-- Description -->
+    {desc && <p class="text-gray-600 text-sm line-clamp-3">{desc}</p>}
+
+    <!-- Tags and metadata -->
+    <div class="flex flex-wrap gap-2 text-xs mt-2">
+        {level && (
+                <span class="bg-green-100 text-green-700 px-2 py-0.5 rounded-full font-medium">
+        {level.toUpperCase()}
+      </span>
+        )}
+        {duration && (
+                <span class="bg-yellow-100 text-yellow-800 px-2 py-0.5 rounded-full font-medium">
+        ⏱ {duration}
+      </span>
+        )}
+
+    </div>
+
+    <!-- Footer (dates) -->
+    <div class="text-xs text-gray-400">
+        Đăng ngày: {pubDate.toLocaleDateString("vi-VN")}
+        {updatedDate && (
+                <>
+                    {" "}• Cập nhật: {updatedDate.toLocaleDateString("vi-VN")}
+                </>
+        )}
+    </div>
+</a>

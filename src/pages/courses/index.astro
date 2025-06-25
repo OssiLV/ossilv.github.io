@@ -1,0 +1,30 @@
+
+---
+// src/pages/courses/index.astro
+import { getCollection } from "astro:content";
+import CourseCard from "../../components/Course/CourseCard.astro";
+import Layout from "../../layouts/Layout.astro";
+
+const courses = await getCollection("courses");
+---
+
+<Layout>
+    <section class="px-6 lg:px-32 py-10">
+        <h1 class="text-3xl font-bold text-gray-800 mb-6 text-center">
+            📚 Danh sách khóa học
+        </h1>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {courses.map((course) => (
+                    <CourseCard
+                            title={course.data.title}
+                            desc={course.data.desc}
+                            pubDate={course.data.pubDate}
+                            updatedDate={course.data.updatedDate}
+                            level={course.data.level}
+                            href={`/courses/${course.id}`}
+                    />
+            ))}
+        </div>
+    </section>
+</Layout>
