@@ -1,10 +1,10 @@
 ---
-course: depops_ultimate
+course: devpops_ultimate
 module: module_1
 title: "Thử nghiệm liên tục (Continuous Testing)"
 order: 3
-pubDate: 2025-06-25
-updatedDate: 2025-06-25
+pubDate: 2025-06-26
+updatedDate: 2025-06-26
 ---
 
 ## 1. Giới thiệu

@@ -2,19 +2,42 @@
 interface Props {
     headings: { depth: number; slug: string; text: string }[];
 }
+interface IHeadingPaddingAdded {
+    depth: number;
+    slug: string;
+    text: string;
+    padding: number;
+}
 
 const { headings } = Astro.props;
 
-// Debug: Log headings to inspect depths
-// console.log("Headings:", JSON.stringify(headings, null, 2));
+// Function to map padding value to Tailwind class
+const getPaddingClass = (padding: number): string => {
+    const paddingMap: { [key: number]: string } = {
+        2: 'pl-2',
+        4: 'pl-4',
+        6: 'pl-6',
+        8: 'pl-8',
+        10: 'pl-10',
+        12: 'pl-12',
+    };
+    return paddingMap[padding] || 'pl-0'; // Fallback to pl-0 if no match
+};
+
+const headingPaddingAdded : IHeadingPaddingAdded[] = headings.map(item => ({
+    ...item,
+    padding: item.depth * 2
+}));
+
+// console.log("headingPaddingAdded:", JSON.stringify(headingPaddingAdded, null, 2));
 ---
 
-<aside class="hidden lg:block overflow-y-auto max-h-screen pl-4">
+<aside class="hidden lg:block overflow-y-auto max-h-screen pl-4 select-none">
     <h2 class="text-lg font-semibold text-gray-700 dark:text-gray-300 mb-2">📑 Mục lục</h2>
     {headings.length > 0 ? (
             <ul class="text-sm text-gray-600 dark:text-gray-400 space-y-1">
-                {headings.map((h) => (
-                        <li class={`pl-${h.depth * 2} ${h.depth == 2 && "underline" }`}>
+                {headingPaddingAdded.map((h) => (
+                        <li class={`${getPaddingClass(h.padding)} ${h.depth == 1 && "font-semibold" } ${h.depth == 2 && "underline" }`}>
                             <a href={`#${h.slug}`} class="hover:text-blue-600 dark:hover:text-blue-400 hover:underline">{h.text}</a>
                         </li>
                 ))}

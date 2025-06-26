@@ -17,7 +17,7 @@ export async function getStaticPaths() {
 
     for (const lesson of lessons) {
         const lessonPathSegments = lesson.id.split("/");
-        const courseId = lessonPathSegments[0]; // e.g., depops_ultimate
+        const courseId = lessonPathSegments[0]; // e.g., devpops_ultimate
         const moduleId = lessonPathSegments[1]; // e.g., module_1
         const lessonFile = lessonPathSegments[2]; // e.g., lesson_1
 
@@ -76,7 +76,7 @@ const author = authors.find((a) => a.id === course.data.author.id)?.data;
 ---
 
 <Layout>
-    <div class="grid grid-cols-1 lg:grid-cols-[300px_1fr_250px] gap-4 px-4 py-6">
+    <div class="grid grid-cols-1 lg:grid-cols-[300px_1fr_250px] gap-4 px-4">
         <!-- CỘT TRÁI -->
         <CourseSidebar
                 relatedModulesWithLessons={relatedModulesWithLessons}

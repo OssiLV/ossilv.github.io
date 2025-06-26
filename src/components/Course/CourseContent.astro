@@ -14,7 +14,7 @@ interface Props {
 const { course, lesson, module, author, Content, isMainCourse } = Astro.props;
 ---
 
-<main class="lg:overflow-y-auto max-h-screen px-4">
+<main class="lg:overflow-y-auto max-h-[86vh] px-4">
     <article id={isMainCourse ? "main-content" : "primary"}>
         {isMainCourse ? (
                 <CourseNav course={course} isMainCourse={true} />

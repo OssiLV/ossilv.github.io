@@ -1,10 +1,10 @@
 ---
-course: depops_ultimate
+course: devpops_ultimate
 module: module_1
 title: "DevOps là gì và các công cụ"
 order: 1
-pubDate: 2025-06-25
-updatedDate: 2025-06-25
+pubDate: 2025-06-26
+updatedDate: 2025-06-26
 ---
 
 ## 1. DevOps là gì?

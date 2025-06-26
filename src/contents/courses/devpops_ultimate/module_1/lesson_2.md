@@ -1,10 +1,10 @@
 ---
-course: depops_ultimate
+course: devpops_ultimate
 module: module_1
 title: "Phát triển liên tục (Continuous Development)"
 order: 2
-pubDate: 2025-06-25
-updatedDate: 2025-06-25
+pubDate: 2025-06-26
+updatedDate: 2025-06-26
 ---
 
 ## 1. Tổng quan về Continuous Development
