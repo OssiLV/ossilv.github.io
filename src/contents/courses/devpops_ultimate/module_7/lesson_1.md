@@ -297,23 +297,7 @@ Sau khi áp dụng stash, bạn có thể xóa nó để giữ ngăn xếp sạc
       ```bash
       gh repo sync
       ```
-
-- **Tự động hóa kiểm tra**:
-    - Sử dụng GitHub Actions để kiểm tra mã trước khi cam kết hoặc áp dụng stash:
-      ```yaml
-      name: Stash Validation
-      on:
-        push:
-          branches: [ main ]
-      jobs:
-        validate:
-          runs-on: ubuntu-latest
-          steps:
-            - uses: actions/checkout@v3
-            - name: Check code
-              run: echo "Kiểm tra mã nguồn sau khi áp dụng stash"
-      ```
-
+      
 ## 5. Tầm quan trọng của Git Stash
 
 - **Linh hoạt trong công việc**: Cho phép tạm dừng và chuyển đổi giữa các nhiệm vụ mà không làm lộn xộn nhánh hiện tại.

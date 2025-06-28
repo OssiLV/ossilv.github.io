@@ -6,9 +6,10 @@ interface Props {
     isMainCourse: boolean;
     module?: CollectionEntry<"modules">;
     lesson?: CollectionEntry<"lessons">;
+    quiz?: CollectionEntry<"quizzes">;
 }
 
-const { course, isMainCourse, module, lesson } = Astro.props as Props;
+const { course, isMainCourse, module, lesson, quiz } = Astro.props as Props;
 ---
 
 {
@@ -35,6 +36,12 @@ const { course, isMainCourse, module, lesson } = Astro.props as Props;
                             <>
                                 <span>›</span>
                                 <span>{lesson.data.title}</span>
+                            </>
+                    )}
+                    {quiz && (
+                            <>
+                                <span>›</span>
+                                <span>{quiz.data.title}</span>
                             </>
                     )}
                 </>

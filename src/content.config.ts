@@ -41,7 +41,7 @@ const courses = defineCollection({
         pubDate: z.date(),
         updatedDate: z.date().optional(),
         level: z.enum(["beginner", "intermediate", "advanced"]).default("beginner"),
-        whatIsYouWillLearn: z.array(z.string()).optional(),
+        overview: z.array(z.string()).optional(),
         requirement: z.array(z.string()).optional(),
     }),
 });
@@ -69,5 +69,24 @@ const lessons = defineCollection({
     }),
 });
 
+// Collection cho các quiz trong 1 module (lấy các file quiz_*.md)
+const quizzes = defineCollection({
+    loader: glob({ pattern: "**/quiz_*.md", base: "./src/contents/courses" }),
+    schema: z.object({
+        title: z.string(),
+        module: reference("modules"),
+        course: reference("courses"),
+        order: z.number(),
+        updatedDate: z.date().optional(),
+        questions: z.array(
+            z.object({
+                question: z.string(),
+                options: z.array(z.string()),
+                answer: z.number()
+            })
+        )
+    })
+});
 
-export const collections = { blog, authors, courses, modules,lessons };
+
+export const collections = { blog, authors, courses, modules,lessons, quizzes };

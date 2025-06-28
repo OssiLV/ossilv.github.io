@@ -183,24 +183,6 @@ Trong thực tế, hợp nhất thường được thực hiện qua Pull Reques
         - Phê duyệt từ ít nhất một người đánh giá (reviewer).
         - Kiểm tra CI/CD (qua GitHub Actions) phải thành công.
 
-- **Tự động hóa với GitHub Actions**:
-    - Tạo workflow để kiểm tra mã tự động khi đẩy lên nhánh `develop` hoặc tạo PR:
-      ```yaml
-      name: CI
-      on:
-        push:
-          branches: [ develop ]
-        pull_request:
-          branches: [ main ]
-      jobs:
-        test:
-          runs-on: ubuntu-latest
-          steps:
-            - uses: actions/checkout@v3
-            - name: Run tests
-              run: echo "Chạy kiểm tra mã nguồn"
-      ```
-
 - **Thông điệp cam kết chuẩn hóa**:
     - Sử dụng **Conventional Commits** (ví dụ: `feat: thêm tệp mẫu`, `fix: sửa lỗi tệp`) để tạo changelog tự động và hỗ trợ versioning.
 

@@ -3,15 +3,16 @@ import type { CollectionEntry } from "astro:content";
 
 type ModuleWithLessons = CollectionEntry<"modules"> & {
     lessons: CollectionEntry<"lessons">[];
+    quizzes: CollectionEntry<"quizzes">[];
 };
 
 interface Props {
-    relatedModulesWithLessons: ModuleWithLessons[];
-    currentCourse: string;
-    lessonId?: string;
+    relatedModulesWithLessonsAndQuizzes: ModuleWithLessons[];
+    currentCourseId: string;
+    currentNavId?: string;
 }
 
-const { relatedModulesWithLessons, currentCourse, lessonId } = Astro.props;
+const { relatedModulesWithLessonsAndQuizzes, currentCourseId, currentNavId } = Astro.props;
 ---
 
 <aside
@@ -22,7 +23,7 @@ const { relatedModulesWithLessons, currentCourse, lessonId } = Astro.props;
         📚 Nội dung khóa học
     </h2>
     <div class="space-y-4">
-        {relatedModulesWithLessons
+        {relatedModulesWithLessonsAndQuizzes
             .sort((a, b) => a.data.order - b.data.order)
             .map((module) => (
                     <details class="rounded-lg bg-gray-100 dark:bg-gray-800">
@@ -35,10 +36,23 @@ const { relatedModulesWithLessons, currentCourse, lessonId } = Astro.props;
                                 .map((l) => (
                                         <li>
                                             <a
-                                                    href={`/courses/${currentCourse}/${module.id.split("/").pop()}/${l.id.split("/").pop()}`}
-                                                    class={`text-sm transition-colors hover:text-gray-600 dark:hover:text-blue-400 ${l.id === lessonId ? "text-gray-700 dark:text-blue-500 font-semibold" : "text-gray-500 dark:text-blue-400"}`}
+                                                    href={`/courses/${currentCourseId}/${module.id.split("/").pop()}/lessons/${l.id.split("/").pop()}`}
+                                                    class={`text-sm transition-colors hover:text-gray-600 dark:hover:text-blue-400 ${l.id === currentNavId ? "text-gray-700 dark:text-blue-500 font-semibold" : "text-gray-500 dark:text-blue-400"}`}
                                             >
                                                 {l.data.title}
+                                            </a>
+                                        </li>
+                                ))}
+
+                            {module.quizzes
+                                ?.sort((a, b) => a.data.order - b.data.order)
+                                ?.map((q) => (
+                                        <li>
+                                            <a
+                                                    href={`/courses/${currentCourseId}/${module.id.split("/").pop()}/quizzes/${q.id.split("/").pop()}`}
+                                                    class={`text-sm transition-colors hover:text-gray-600 dark:hover:text-blue-400 ${q.id === currentNavId ? "text-gray-700 dark:text-blue-500 font-semibold" : "text-gray-500 dark:text-blue-400"}`}
+                                            >
+                                                {q.data.title}
                                             </a>
                                         </li>
                                 ))}

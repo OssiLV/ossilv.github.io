@@ -296,26 +296,6 @@ Từ năm 2021, GitHub đã ngừng hỗ trợ xác thực bằng tên người 
 
     - Thiết lập **branch protection rules** trên GitHub để yêu cầu Pull Requests và kiểm tra CI/CD trước khi đẩy mã vào `main`.
 
-- **Tự động hóa với GitHub Actions**:
-
-    - Tạo workflow để kiểm tra mã khi đẩy:
-
-      ```yaml
-      name: CI Check
-      on:
-        push:
-          branches: [ main ]
-        pull_request:
-          branches: [ main ]
-      jobs:
-        validate:
-          runs-on: ubuntu-latest
-          steps:
-            - uses: actions/checkout@v3
-            - name: Check code
-              run: echo "Kiểm tra mã nguồn khi đẩy"
-      ```
-
 ## 5. Tầm quan trọng của Kho Từ Xa trên GitHub
 
 - **Hợp tác nhóm**: Kho từ xa cho phép nhiều nhà phát triển làm việc cùng lúc, đồng bộ hóa mã qua `git pull` và `git push`.

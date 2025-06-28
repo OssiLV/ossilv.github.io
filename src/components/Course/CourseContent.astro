@@ -5,30 +5,50 @@ import CourseNav from "./CourseNav.astro";
 interface Props {
     course: CollectionEntry<"courses">;
     lesson?: CollectionEntry<"lessons">;
+    quiz?: CollectionEntry<"quizzes">;
     module?: CollectionEntry<"modules">;
     author?: { name: string; sourceURL?: string; isCurrentSite: boolean };
     Content: any;
     isMainCourse: boolean;
 }
 
-const { course, lesson, module, author, Content, isMainCourse } = Astro.props;
+const {
+    course,
+    lesson,
+    module,
+    author,
+    Content,
+    isMainCourse,
+    quiz
+} = Astro.props;
+
+// Hàm shuffle mảng
+function shuffleArray(array: Array<{ question: string, options: string[], answer: number }>) {
+    return array
+        .map((value) => ({ value, sort: Math.random() }))
+        .sort((a, b) => a.sort - b.sort)
+        .map(({ value }) => value);
+}
+
+quiz?.data?.questions && (quiz.data.questions = shuffleArray(quiz.data.questions));
 ---
 
 <main class="lg:overflow-y-auto max-h-[86vh] px-4">
     <article id={isMainCourse ? "main-content" : "primary"}>
         {isMainCourse ? (
-                <CourseNav course={course} isMainCourse={true}/>
+                <CourseNav course={course} isMainCourse={true} />
         ) : (
                 <CourseNav
                         course={course}
                         module={module}
                         lesson={lesson}
+                        quiz={quiz}
                         isMainCourse={false}
                 />
         )}
 
         <h1 class="text-3xl font-bold text-gray-900 dark:text-gray-100 mt-4">
-            {isMainCourse ? course.data.title : lesson?.data.title}
+            {isMainCourse ? course.data.title : quiz ? quiz.data.title : lesson?.data.title}
         </h1>
 
         {isMainCourse && course.data.desc && (
@@ -36,9 +56,9 @@ const { course, lesson, module, author, Content, isMainCourse } = Astro.props;
         )}
 
         <div class="mt-4 text-sm text-gray-500 dark:text-gray-400 space-y-1">
-            {(isMainCourse ? course.data.updatedDate : lesson?.data.updatedDate) && (
+            {(isMainCourse ? course.data.updatedDate : lesson?.data.updatedDate || quiz?.data.updatedDate) && (
                     <p>
-                        🛠 Cập nhật: {(isMainCourse ? course.data.updatedDate : lesson?.data.updatedDate)?.toLocaleDateString("vi-VN")}
+                        🛠 Cập nhật: {(isMainCourse ? course.data.updatedDate : lesson?.data.updatedDate || quiz?.data.updatedDate)?.toLocaleDateString("vi-VN")}
                     </p>
             )}
             {isMainCourse && course.data.level && (
@@ -59,11 +79,11 @@ const { course, lesson, module, author, Content, isMainCourse } = Astro.props;
             )}
         </div>
 
-        {isMainCourse && (course.data.whatIsYouWillLearn?.length ?? 0) > 0 && (
+        {isMainCourse && (course.data.overview?.length ?? 0) > 0 && (
                 <div class="mt-6 border border-blue-200 dark:border-blue-700 bg-blue-50 dark:bg-blue-900/20 rounded-xl p-5 shadow-sm">
-                    <h2 class="text-lg font-semibold text-blue-800 dark:text-blue-300 mb-3">📘 Bạn sẽ học được:</h2>
+                    <h2 class="text-lg font-semibold text-blue-800 dark:text-blue-300 mb-3">📘 Tổng quan khóa học:</h2>
                     <ul class="list-none space-y-2">
-                        {course.data.whatIsYouWillLearn!.map((item) => (
+                        {course.data.overview!.map((item) => (
                                 <li class="flex items-start gap-2 text-gray-800 dark:text-gray-200">
                                     <span class="text-green-600 dark:text-green-400 text-xl leading-5">✔</span>
                                     <span>{item}</span>
@@ -76,5 +96,131 @@ const { course, lesson, module, author, Content, isMainCourse } = Astro.props;
         <div class="prose prose-blue dark:prose-invert max-w-none mt-8">
             <Content />
         </div>
+
+        <!-- Store the quiz.data prop as a data attribute. -->
+        {quiz && quiz.data.questions && quiz.data.questions.length > 0 ? (
+                <astro-quiz data-message={JSON.stringify(quiz.data, null, 2)} >
+                    <div id="quiz-wrapper" class="space-y-6 mt-8">
+                        {quiz.data.questions.map((q, i) => (
+                                <div class="p-4 border rounded">
+                                    <p class="font-semibold">{i + 1}. {q.question}</p>
+                                    <ul class="mt-2 space-y-1">
+                                        {q.options.map((opt, j) => (
+                                                <li>
+                                                    <label class="flex items-center space-x-2">
+                                                        <input
+                                                                type="radio"
+                                                                name={`q${i}`}
+                                                                value={j}
+                                                                class="quiz-option"
+                                                        />
+                                                        <span>{opt}</span>
+                                                    </label>
+                                                </li>
+                                        ))}
+                                    </ul>
+                                </div>
+                        ))}
+
+                        <button class="submit-quiz mt-4 px-4 py-2 bg-blue-600 text-white rounded">
+                            Nộp bài
+                        </button>
+
+                        <div id="quiz-result" class="mt-6 p-4 bg-gray-100 rounded hidden">
+                            <h3 class="font-bold text-lg">Kết quả</h3>
+                            <ul id="result-list" class="mt-2 list-disc list-inside"></ul>
+                        </div>
+                    </div>
+                </astro-quiz>
+        ) : quiz ? (
+                <p>Không có câu hỏi quiz nào.</p>
+        ) : null}
+
+
     </article>
 </main>
+<script>
+    class AstroQuiz extends HTMLElement {
+        connectedCallback() {
+            const message = this.dataset.message;
+
+            // ✅ Check if message exists
+            if (!message) {
+                console.error("Quiz data is missing in data-message.");
+                return;
+            }
+
+            let quizData;
+            try {
+                quizData = JSON.parse(message);
+            } catch (err) {
+                console.error("Failed to parse quiz data:", err);
+                return;
+            }
+
+            const wrapper = this.querySelector("#quiz-wrapper");
+            const submitBtn = this.querySelector(".submit-quiz");
+
+            if (!wrapper || !submitBtn) {
+                console.error("Missing quiz wrapper or submit button.");
+                return;
+            }
+
+            const resultBox = wrapper.querySelector("#quiz-result");
+            const resultList = wrapper.querySelector("#result-list");
+
+            if (!resultBox || !resultList) {
+                console.error("Missing result elements.");
+                return;
+            }
+
+            submitBtn.addEventListener("click", () => {
+                let score = 0;
+                const answers:any = [];
+
+                quizData.questions.forEach((q: any, index: number) => {
+                    const selected = wrapper.querySelector(`input[name="q${index}"]:checked`);
+                    const selectedIndex = selected && selected instanceof HTMLInputElement
+                        ? parseInt(selected.value)
+                        : null;
+
+                    const isCorrect = selectedIndex === q.answer;
+
+                    if (isCorrect) score++;
+
+                    answers.push({
+                        question: q.question,
+                        selected: selectedIndex !== null ? q.options[selectedIndex] : "Chưa chọn",
+                        correct: q.options[q.answer],
+                        isCorrect,
+                    });
+                });
+
+                // Clear previous results
+                resultList.innerHTML = "";
+
+                // Display results
+                answers.forEach((a: any, i: number) => {
+                    const li = document.createElement("li");
+                    li.innerHTML = `
+                                    <strong>${i + 1}. ${a.question}</strong> <br/>
+                                    ✅ Đáp án đúng: <em>${a.correct}</em><br/>
+                                    ${a.isCorrect ? "🎉 Bạn đã chọn đúng!" : `❌ Bạn chọn: <em>${a.selected}</em>`}<br/><br/>
+                                  `;
+                    li.className = a.isCorrect ? "text-green-600" : "text-red-600";
+                    resultList.appendChild(li);
+                });
+
+                const total = document.createElement("li");
+                total.innerHTML = `<strong>🎯 Tổng điểm: ${score}/${quizData.questions.length}</strong>`;
+                total.className = "mt-4 text-blue-600 font-semibold";
+                resultList.appendChild(total);
+
+                resultBox.classList.remove("hidden");
+                resultBox.scrollIntoView({ behavior: "smooth" });
+            });
+        }
+    }
+
+    customElements.define("astro-quiz", AstroQuiz);
+</script>

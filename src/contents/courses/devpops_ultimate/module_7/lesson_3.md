@@ -297,22 +297,6 @@ Hãy thực hành trong dự án `git_training_v3` để quản lý nhiều stas
       gh repo sync
       ```
 
-- **Tự động hóa kiểm tra**:
-    - Sử dụng GitHub Actions để kiểm tra mã sau khi khôi phục stash:
-      ```yaml
-      name: Stash Validation
-      on:
-        push:
-          branches: [ main ]
-      jobs:
-        validate:
-          runs-on: ubuntu-latest
-          steps:
-            - uses: actions/checkout@v3
-            - name: Check code
-              run: echo "Kiểm tra mã sau khi khôi phục stash"
-      ```
-
 ## 5. Tầm quan trọng của Quản lý Nhiều Stash
 
 - **Tổ chức thay đổi**: Sử dụng thông điệp stash giúp dễ dàng nhận diện và quản lý nhiều bộ thay đổi.

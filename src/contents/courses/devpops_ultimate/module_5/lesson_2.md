@@ -171,24 +171,6 @@ Hãy thực hành trong dự án `git_training_v3` để xem cách sử dụng `
       gh pr diff --commit
       ```
 
-- **Tự động hóa kiểm tra**:
-
-    - Sử dụng GitHub Actions để tự động so sánh và kiểm tra các cam kết:
-
-      ```yaml
-      name: Compare Commits
-      on:
-        push:
-          branches: [ main ]
-      jobs:
-        diff-check:
-          runs-on: ubuntu-latest
-          steps:
-            - uses: actions/checkout@v3
-            - name: Compare commits
-              run: git diff HEAD^ HEAD
-      ```
-
 - **Thông điệp cam kết chuẩn hóa**:
 
     - Sử dụng **Conventional Commits** (ví dụ: `feat: thêm tính năng`, `fix: sửa lỗi`) để dễ dàng nhận diện mục đích của các cam kết khi so sánh.

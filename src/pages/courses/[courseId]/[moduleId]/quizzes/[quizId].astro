@@ -1,0 +1,103 @@
+---
+import { getCollection, getEntry, render, type CollectionEntry } from "astro:content";
+import Layout from "../../../../../layouts/Layout.astro";
+import CourseSidebar from "../../../../../components/Course/CourseSidebar.astro";
+import CourseTOC from "../../../../../components/Course/CourseTOC.astro";
+import CourseContent from "../../../../../components/Course/CourseContent.astro";
+
+interface Params {
+    courseId: string;
+    moduleId: string;
+    quizId: string;
+}
+
+export async function getStaticPaths() {
+    const quizzes = await getCollection("quizzes");
+    const paths = [];
+
+    for (const quiz of quizzes) {
+        const segments = quiz.id.split("/");
+        if (segments.length < 3) {
+            console.warn(`Invalid quiz ID format: ${quiz.id}`);
+            continue;
+        }
+
+        const courseId = segments[0]; // e.g., linux_beginer
+        const moduleId = segments[1]; // e.g., module_1
+        const quizFile = segments[2]; // e.g., quiz_1.md
+
+        const module = await getEntry("modules", `${courseId}/${moduleId}/${moduleId}`);
+        if (!module) {
+            console.warn(`Module not found for quiz: ${quiz.id}`);
+            continue;
+        }
+
+        const course = await getEntry("courses", courseId);
+        if (!course) {
+            console.warn(`Course not found for module: ${module.id}`);
+            continue;
+        }
+
+        paths.push({
+            params: {
+                courseId,
+                moduleId,
+                quizId: quizFile.replace(".md", ""),
+            },
+            props: { quiz, module, course },
+        });
+    }
+    // console.log("Generated paths:", paths);
+    return paths;
+}
+
+const { courseId, moduleId } = Astro.params as Params;
+const { quiz, course } = Astro.props as {
+    quiz: CollectionEntry<"quizzes">;
+    module: CollectionEntry<"modules">;
+    course: CollectionEntry<"courses">;
+};
+
+const { Content, headings } = await render(quiz);
+const authors = await getCollection("authors");
+const modules = await getCollection("modules", (m) => m.data.course.id === courseId);
+const lessons = await getCollection("lessons", (l) => l.data.course.id === courseId);
+const quizzes = await getCollection("quizzes", (q) => q.data.course.id === courseId);
+
+// Tạo danh sách module → lessons/quizzes
+const relatedModulesWithLessonsAndQuizzes = modules.map((module) => {
+    const _moduleId = module.id.split("/").at(-2);
+    const moduleLessons = lessons
+        .filter((lesson) => lesson.data.module.id === _moduleId)
+        .sort((a, b) => a.data.order - b.data.order);
+    const moduleQuizzes = quizzes
+        .filter((quiz) => quiz.data.module.id === _moduleId)
+        .sort((a, b) => a.data.order - b.data.order);
+    return {
+        ...module,
+        lessons: moduleLessons,
+        quizzes: moduleQuizzes,
+    };
+});
+
+const module = await getEntry("modules", `${courseId}/${moduleId}/${moduleId}`);
+const author = authors.find((a) => a.id === course.data.author.id)?.data;
+// console.log(relatedModulesWithLessonsAndQuizzes)
+---
+
+<Layout>
+    <div class="grid grid-cols-1 lg:grid-cols-[300px_1fr_250px] gap-4 px-4">
+        <!-- CỘT TRÁI -->
+        <CourseSidebar
+                relatedModulesWithLessonsAndQuizzes={relatedModulesWithLessonsAndQuizzes}
+                currentCourseId={courseId}
+                currentNavId={quiz.id}
+        />
+
+        <!-- CỘT GIỮA -->
+        <CourseContent course={course} Content={Content} isMainCourse={false} quiz={quiz} author={author} module={module} />
+
+        <!-- CỘT PHẢI -->
+        <CourseTOC headings={headings} />
+    </div>
+</Layout>

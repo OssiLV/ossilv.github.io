@@ -3,70 +3,46 @@ title: "DevOps MasterClass: Terraform Kubernetes Ansible Docker"
 desc: "DevOps with Jenkins Terraform GIT Docker Maven Kubernetes Ansible Automation Docker Swarm, DevOps Real world Exercises"
 author: "ossilv"
 pubDate: 2025-06-25
-updatedDate: 2025-06-25
+updatedDate: 2025-06-28
 level: "beginner"
-whatIsYouWillLearn: [
-    "An understanding of DevOps and the modern DevOps Tools Docker, Kubernetes, Jenkins, Docker Swarm, Kubernetes Helm.",
-    "Complete Understanding of Docker Containers & Docker Swarm Orchestration & Kubernetes.",
-    "Be DevOps Master in Kubernetes and Kubernetes Administration from Scratch to Advance Level.",
-    "As CI DevOps Engineer, Jenkins Multiple Integration with Modern Technology Tools like Docker, Code Delivery Pipeline, Git & GitHub .",
-    "The ability as DevOps Engineer to Automate Code Delivery and Deployment Pipeline Using Jenkins.",
-    "Learn Building the Apps Dockerize using Docker Containers and Docker File & HELM as DevOps Engineer.",
-    "Kubernetes Development and Complete Deployment on Kubernetes & Docker Containers."
+overview: [
+    "Hiểu biết về DevOps và các công cụ DevOps hiện đại như Docker, Kubernetes, Jenkins, Docker Swarm và Kubernetes Helm.",
+    "Nắm vững hoàn toàn về Docker Containers, điều phối bằng Docker Swarm và Kubernetes.",
+    "Trở thành chuyên gia DevOps trong lĩnh vực Kubernetes và quản trị Kubernetes từ cơ bản đến nâng cao.",
+    "Với vai trò Kỹ sư CI DevOps, thực hiện tích hợp Jenkins với nhiều công cụ công nghệ hiện đại như Docker, quy trình phân phối mã (Code Delivery Pipeline), Git & GitHub.",
+    "Có khả năng tự động hóa quy trình phân phối mã và triển khai (Deployment Pipeline) bằng Jenkins với vai trò Kỹ sư DevOps.",
+    "Học cách xây dựng ứng dụng đã được đóng gói bằng Docker (Dockerize) sử dụng Docker Containers, Dockerfile và HELM với vai trò Kỹ sư DevOps.",
+    "Phát triển và triển khai hoàn chỉnh ứng dụng trên nền tảng Kubernetes và Docker Containers."
 ]
 requirement: [
-    "You have an attitude to learn while having fun :)",
-    "No prerequisites. Anybody wants to know DevOps Technologies(Docker, Kubernetes, Jenkins, Git & GitHub) Can Enroll in the course",
-    "Better to have Linux OS availability for DevOps Tools Learning.",
-    "Basic information about software development processes"
+    "Bạn có tinh thần học hỏi một cách vui vẻ và thoải mái :)",
+    "Không yêu cầu kiến thức nền tảng. Bất kỳ ai muốn tìm hiểu về các công nghệ DevOps (Docker, Kubernetes, Jenkins, Git & GitHub) đều có thể tham gia khóa học.",
+    "Tốt hơn nếu bạn có sẵn hệ điều hành Linux để học các công cụ DevOps.",
+    "Nên có kiến thức cơ bản về quy trình phát triển phần mềm."
 ]
 ---
 
-## Description
+### Lưu ý:
 
-Ready to take your career to new heights? Look no further! Our comprehensive DevOps MasterClass is your gateway to becoming a sought-after DevOps professional. With a robust curriculum encompassing Terraform, Git, Ansible, Jenkins, Docker, Docker Swarm, Kubernetes, and much more, this course equips you with the essential skills to excel in the dynamic world of DevOps.
+Khóa học yêu cầu bạn tải về các phần mềm như **Jenkins**, **Docker Desktop**.
 
-### Disclaimer:
+### Bạn sẽ học được gì:
 
-This course requires you to download [Jenkins, Docker Desktop]. If you are a Udemy Business user, please check with your employer before downloading any software to ensure compliance with your organization’s policies.
+**Terraform**: Làm chủ hạ tầng dưới dạng mã (Infrastructure as Code), giúp tự động hóa quản lý tài nguyên dễ dàng.
 
-### What You'll Learn:
+**Git và GitHub**: Thành thạo quản lý phiên bản và cộng tác phát triển phần mềm.
 
-**Terraform**: Master the art of infrastructure as code and orchestrate resources effortlessly.
+**Ansible**: Tự động hóa hệ thống và cấu hình một cách hiệu quả.
 
-**Git and GitHub**: Gain proficiency in version control and collaborative software development.
+**Jenkins**: Khai thác sức mạnh của tích hợp và triển khai liên tục (CI/CD).
 
-**Ansible**: Automate your infrastructure and configuration management for streamlined operations.
+**Docker**: Đóng gói ứng dụng thành container để dễ triển khai và mở rộng.
 
-**Jenkins**: Unleash the power of continuous integration and continuous deployment (CI/CD).
+**Docker Swarm**: Học cách điều phối container để quản lý và mở rộng hiệu quả.
 
-**Docker**: Containerize your applications for easy deployment and scaling.
+**Kubernetes**: Khám phá chuyên sâu về điều phối container với các bài học thực hành Kubernetes.
 
-**Docker Swarm**: Learn container orchestration to manage and scale containers efficiently.
+### Khóa học này dành cho ai?
 
-**Kubernetes**: Dive into the world of container orchestration with hands-on Kubernetes expertise.
-
-### Why Choose Our DevOps MasterClass?
-
-**Comprehensive Curriculum**: Covering the entire DevOps spectrum, you'll acquire the skills you need to excel in this dynamic field.
-
-**Expert Instructors**: Learn from industry professionals with years of practical experience in DevOps.
-
-**Real-world Projects**: Apply your knowledge to real projects and build a portfolio that showcases your skills.
-
-**Community Support**: Join a network of like-minded learners and interact with peers and instructors.
-
-**Career Advancement**: Unlock endless career opportunities with in-demand DevOps skills.
-
-**Certification**: Receive a prestigious certificate upon course completion to add to your resume.
-
-
-Don't miss out on this opportunity to transform your career and become a DevOps pro. Enroll today and take the first step towards a brighter future.
-
-
-Become the DevOps expert companies are looking for – enroll now!
-
-### Who this course is for:
-
-- DevOps, developers or IT admins who want to advance their career by improving their DevOps skills.
-- Who want to learn DevOps Technologies Docker Containers, Kubernetes, Jenkins, Git & GitHub & Docker Swarm
+- Các DevOps, lập trình viên hoặc quản trị viên hệ thống muốn nâng cao kỹ năng DevOps của mình.
+- Những người muốn học các công nghệ DevOps như **Docker Containers**, **Kubernetes**, **Jenkins**, **Git & GitHub**, **Docker Swarm**.

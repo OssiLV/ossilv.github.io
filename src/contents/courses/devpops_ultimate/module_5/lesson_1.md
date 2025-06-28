@@ -186,25 +186,6 @@ Khi bạn thêm tệp vào khu vực staging bằng `git add`, lệnh `git diff`
       gh pr diff
       ```
 
-- **Tự động hóa kiểm tra**:
-    - Sử dụng GitHub Actions để kiểm tra thay đổi trước khi cam kết hoặc đẩy:
-      ```yaml
-      name: Check Changes
-      on:
-        push:
-          branches: [ main ]
-        pull_request:
-          branches: [ main ]
-      jobs:
-        diff-check:
-          runs-on: ubuntu-latest
-          steps:
-            - uses: actions/checkout@v3
-            - name: Check diff
-              run: git diff --check
-      ```
-      Điều này đảm bảo không có lỗi định dạng hoặc xung đột trong mã.
-
 ## 6. Tầm quan trọng của `git diff`
 - **Kiểm tra trước khi cam kết**: `git diff` giúp bạn xem lại các thay đổi để đảm bảo chỉ những thay đổi mong muốn được thêm vào khu vực staging.
 - **Hỗ trợ làm việc nhóm**: So sánh thay đổi giúp phát hiện lỗi hoặc xung đột trước khi đẩy mã lên kho từ xa.

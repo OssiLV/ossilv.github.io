@@ -326,22 +326,6 @@ Hãy thực hành hợp nhất nhánh `main` vào `develop` và ngược lại t
       ```
     - GitHub cung cấp giao diện trực quan để xem và giải quyết xung đột trong trình duyệt.
 
-- **Tự động hóa với GitHub Actions**:
-    - Tạo workflow để kiểm tra hợp nhất trước khi thực hiện:
-      ```yaml
-      name: Merge Validation
-      on:
-        pull_request:
-          branches: [ main ]
-      jobs:
-        validate:
-          runs-on: ubuntu-latest
-          steps:
-            - uses: actions/checkout@v3
-            - name: Check merge conflicts
-              run: git merge --no-commit --no-ff origin/develop
-      ```
-
 - **Quy tắc bảo vệ nhánh**:
     - Thiết lập **branch protection rules** trên GitHub để yêu cầu:
         - Pull Request trước khi hợp nhất.

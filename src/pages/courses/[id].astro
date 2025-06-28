@@ -17,20 +17,23 @@ const { course } = Astro.props as { course: CollectionEntry<"courses"> };
 const { Content, headings } = await render(course);
 const authors = await getCollection("authors");
 const modules = await getCollection("modules", (m) => m.data.course.id === course.id);
-const lessons = await getCollection("lessons");
+const lessons = await getCollection("lessons", (l) => l.data.course.id === course.id);
+const quizzes = await getCollection("quizzes", (q) => q.data.course.id === course.id);
 
-const currentCourse = course.id;
-
+const currentCourseId = course.id;
 // Construct relatedModulesWithLessons
-const relatedModulesWithLessons = modules.map((module) => {
+const relatedModulesWithLessonsAndQuizzes = modules.map((module) => {
     const moduleId = module.id.split("/").at(-2);
     const moduleLessons = lessons
-        .filter((lesson) => lesson.data.module.id === moduleId && lesson.data.course.id === currentCourse)
+        .filter((lesson) => lesson.data.module.id === moduleId)
         .sort((a, b) => a.data.order - b.data.order);
-    // Debug: Log lessons for each module
+    const moduleQuizzes = quizzes
+        .filter((quiz) => quiz.data.module.id === moduleId )
+        .sort((a, b) => a.data.order - b.data.order);
     return {
         ...module,
         lessons: moduleLessons,
+        quizzes: moduleQuizzes,
     };
 });
 
@@ -42,8 +45,8 @@ const author = authors.find((a) => a.id === course.data.author.id)?.data;
     <div class="grid grid-cols-1 lg:grid-cols-[300px_1fr_250px] gap-4 px-4 ">
         <!-- CỘT TRÁI -->
         <CourseSidebar
-                relatedModulesWithLessons={relatedModulesWithLessons}
-                currentCourse={currentCourse}
+                relatedModulesWithLessonsAndQuizzes={relatedModulesWithLessonsAndQuizzes}
+                currentCourseId={currentCourseId}
         />
 
         <!-- CỘT GIỮA -->

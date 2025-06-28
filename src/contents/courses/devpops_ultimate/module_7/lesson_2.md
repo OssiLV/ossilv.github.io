@@ -268,22 +268,6 @@ Hãy thực hành trong dự án `git_training_v3` để hiểu cách stash cả
       gh repo sync
       ```
 
-- **Tự động hóa kiểm tra**:
-    - Sử dụng GitHub Actions để kiểm tra mã sau khi khôi phục stash:
-      ```yaml
-      name: Stash Validation
-      on:
-        push:
-          branches: [ main ]
-      jobs:
-        validate:
-          runs-on: ubuntu-latest
-          steps:
-            - uses: actions/checkout@v3
-            - name: Check code
-              run: echo "Kiểm tra mã sau khi khôi phục stash"
-      ```
-
 ## 5. Tầm quan trọng của Git Stash với Tệp Không Được Theo dõi
 
 - **Linh hoạt trong quản lý tệp**: Cho phép lưu trữ cả tệp được theo dõi và không được theo dõi, giúp xử lý các tình huống phức tạp như thêm tệp mới vào dự án.

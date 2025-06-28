@@ -213,22 +213,6 @@ Hãy thực hành các lệnh liên quan đến nhánh trong dự án `git_train
     - **Git Flow**: Sử dụng nhánh `main` cho sản phẩm chính, nhánh `develop` cho tích hợp, nhánh `release/*` cho các phiên bản phát hành, và nhánh `feature/*` hoặc `hotfix/*` cho các nhiệm vụ cụ thể.
     - **GitHub Flow**: Tạo nhánh tính năng từ `main`, đẩy mã, tạo Pull Request, và hợp nhất sau khi xem xét mã (code review).
 
-- **Tự động hóa với GitHub Actions**:
-    - Tạo workflow để kiểm tra nhánh mới hoặc thay đổi:
-      ```yaml
-      name: Branch Validation
-      on:
-        push:
-          branches: [ feature/*, hotfix/* ]
-      jobs:
-        validate:
-          runs-on: ubuntu-latest
-          steps:
-            - uses: actions/checkout@v3
-            - name: Check branch
-              run: echo "Kiểm tra nhánh $(git rev-parse --abbrev-ref HEAD)"
-      ```
-
 - **Công cụ hỗ trợ**:
     - Sử dụng **GitHub CLI** để quản lý nhánh:
       ```bash

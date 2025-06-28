@@ -1,9 +1,9 @@
 ---
 import { getCollection, getEntry, render, type CollectionEntry } from "astro:content";
-import Layout from "../../../../layouts/Layout.astro";
-import CourseSidebar from "../../../../components/Course/CourseSidebar.astro";
-import CourseTOC from "../../../../components/Course/CourseTOC.astro";
-import CourseContent from "../../../../components/Course/CourseContent.astro";
+import Layout from "../../../../../layouts/Layout.astro";
+import CourseSidebar from "../../../../../components/Course/CourseSidebar.astro";
+import CourseTOC from "../../../../../components/Course/CourseTOC.astro";
+import CourseContent from "../../../../../components/Course/CourseContent.astro";
 
 interface Params {
     courseId: string;
@@ -56,17 +56,24 @@ const { lesson, course } = Astro.props as {
 const { Content, headings } = await render(lesson);
 const authors = await getCollection("authors");
 const modules = await getCollection("modules", (m) => m.data.course.id === courseId);
-const lessons = await getCollection("lessons");
+const lessons = await getCollection("lessons", (l) => l.data.course.id === courseId);
+const quizzes = await getCollection("quizzes", (q) => q.data.course.id === courseId);
+
+const currentCourseId = course.id;
 
 // Construct relatedModulesWithLessons
-const relatedModulesWithLessons = modules.map((module) => {
+const relatedModulesWithLessonsAndQuizzes = modules.map((module) => {
     const _moduleId = module.id.split("/").at(-2);
     const moduleLessons = lessons
-        .filter((lesson) => lesson.data.module.id === _moduleId && lesson.data.course.id === courseId)
+        .filter((lesson) => lesson.data.module.id === _moduleId)
+        .sort((a, b) => a.data.order - b.data.order);
+    const moduleQuizzes = quizzes
+        .filter((quiz) => quiz.data.module.id === _moduleId )
         .sort((a, b) => a.data.order - b.data.order);
     return {
         ...module,
         lessons: moduleLessons,
+        quizzes: moduleQuizzes,
     };
 });
 const module = await getEntry("modules", `${courseId}/${moduleId}/${moduleId}`);
@@ -77,9 +84,9 @@ const author = authors.find((a) => a.id === course.data.author.id)?.data;
     <div class="grid grid-cols-1 lg:grid-cols-[300px_1fr_250px] gap-4 px-4">
         <!-- CỘT TRÁI -->
         <CourseSidebar
-                relatedModulesWithLessons={relatedModulesWithLessons}
-                currentCourse={courseId}
-                lessonId={lesson.id}
+                relatedModulesWithLessonsAndQuizzes={relatedModulesWithLessonsAndQuizzes}
+                currentCourseId={currentCourseId}
+                currentNavId={lesson.id}
         />
 
         <!-- CỘT GIỮA -->

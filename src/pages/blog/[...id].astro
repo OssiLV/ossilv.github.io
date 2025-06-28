@@ -4,7 +4,7 @@ import Layout from "../../layouts/Layout.astro";
 import PostCard, {
     type IReferencePost,
 } from "../../components/ContentMD.astro";
-import TableOfContents from "../../components/TableOfContents.astro";
+import PostToc from "../../components/Post/PostTOC.astro";
 import CategoriesComponent from "../../components/CategoriesComponent.astro";
 export async function getStaticPaths() {
     const posts = await getCollection("blog");
@@ -46,7 +46,7 @@ const nextPost = await getValidPost(post.data.nextPost);
 ---
 
 <Layout>
-    <TableOfContents headings={headings} />
+    <PostToc headings={headings} />
 
     <div class="flex flex-col xl:flex-row xl:px-32">
         <div class="hidden xl:block min-w-72 max-w-72 pl-8">
