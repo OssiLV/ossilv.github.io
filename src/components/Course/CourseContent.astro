@@ -36,9 +36,6 @@ const { course, lesson, module, author, Content, isMainCourse } = Astro.props;
         )}
 
         <div class="mt-4 text-sm text-gray-500 dark:text-gray-400 space-y-1">
-            {!isMainCourse && module && (
-                    <p>Module: {module.data.title}</p>
-            )}
             {(isMainCourse ? course.data.updatedDate : lesson?.data.updatedDate) && (
                     <p>
                         🛠 Cập nhật: {(isMainCourse ? course.data.updatedDate : lesson?.data.updatedDate)?.toLocaleDateString("vi-VN")}
