@@ -17,11 +17,11 @@ const { course, lesson, module, author, Content, isMainCourse } = Astro.props;
 <main class="lg:overflow-y-auto max-h-[86vh] px-4">
     <article id={isMainCourse ? "main-content" : "primary"}>
         {isMainCourse ? (
-                <CourseNav course={course} isMainCourse={true} />
+                <CourseNav course={course} isMainCourse={true}/>
         ) : (
                 <CourseNav
                         course={course}
-                        module={module?.data.title}
+                        module={module}
                         lesson={lesson}
                         isMainCourse={false}
                 />

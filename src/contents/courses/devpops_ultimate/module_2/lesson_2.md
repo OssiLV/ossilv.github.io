@@ -129,19 +129,11 @@ Git hoạt động dựa trên ba giai đoạn chính: **Working Directory**, **
 - **Remote Repository:** Kho lưu trữ từ xa (như GitHub), nơi đồng bộ mã nguồn.
 - **Branch:** Nhánh, cho phép phát triển song song mà không ảnh hưởng đến mã chính.
 
-## 7. Liên kết với các bài giảng trước
-- **Mục tiêu khóa học Git:** Bài giảng trước đã giới thiệu vai trò của Git trong DevOps, tính năng, và tích hợp với GitHub.
-- **Các giai đoạn DevOps:**
-    - **Phát triển liên tục:** Git quản lý mã nguồn trong giai đoạn này.
-    - **Tích hợp liên tục:** Git cung cấp mã cho pipeline CI/CD.
-    - **Triển khai liên tục:** Nhánh ổn định được sử dụng để triển khai.
-- **Thuật ngữ này** là nền tảng để hiểu cách Git hoạt động trong các giai đoạn DevOps.
-
-## 8. Cập nhật theo xu hướng DevOps năm 2025
+## 7. Cập nhật theo xu hướng DevOps năm 2025
 - **GitOps:** Sử dụng Git làm nguồn sự thật duy nhất để quản lý mã nguồn và cơ sở hạ tầng.
 - **Tích hợp AI:** GitHub Copilot và các công cụ AI khác hỗ trợ đề xuất mã và quản lý nhánh trực tiếp từ kho lưu trữ.
 - **Bảo mật kho lưu trữ:** Các công cụ như Dependabot và CodeQL tích hợp với GitHub để kiểm tra lỗ hổng bảo mật trong mã nguồn.
 - **Quản lý nhánh tự động:** Các pipeline CI/CD tự động xóa nhánh sau khi merge, tối ưu hóa quy trình.
 
-## 9. Tổng kết
+## 8. Tổng kết
 Bài giảng này đã giới thiệu các thuật ngữ cốt lõi của Git: Git Repository, Working Directory, Staging Area, Git Directory, Remote Repository, và Branch. Hiểu rõ các khái niệm này là bước đầu tiên để làm việc hiệu quả với Git trong DevOps. Các bài giảng tiếp theo sẽ đi sâu vào cách sử dụng lệnh Git, thực hành quản lý kho lưu trữ, và tích hợp với các công cụ như GitHub, Maven, Jenkins, và Docker.

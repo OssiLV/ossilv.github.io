@@ -25,7 +25,7 @@ const { relatedModulesWithLessons, currentCourse, lessonId } = Astro.props;
         {relatedModulesWithLessons
             .sort((a, b) => a.data.order - b.data.order)
             .map((module) => (
-                    <details class="rounded-lg bg-gray-100 dark:bg-gray-800" open>
+                    <details class="rounded-lg bg-gray-100 dark:bg-gray-800">
                         <summary class="cursor-pointer font-medium px-4 py-2 text-gray-800 dark:text-gray-200">
                             {module.data.title.toUpperCase()}
                         </summary>
@@ -77,10 +77,10 @@ const { relatedModulesWithLessons, currentCourse, lessonId } = Astro.props;
 
 <script>
     document.getElementById("toggle-sidebar")?.addEventListener("click", () => {
-        console.log("Toggle button clicked"); // Debug log
+        // console.log("Toggle button clicked"); // Debug log
         const sidebar = document.getElementById("course-sidebar");
         if (sidebar) {
-            console.log("Sidebar found, toggling active class"); // Debug log
+            // console.log("Sidebar found, toggling active class"); // Debug log
             sidebar.classList.toggle("active");
             if (sidebar.classList.contains("active")) {
                 sidebar.classList.add(
@@ -115,7 +115,7 @@ const { relatedModulesWithLessons, currentCourse, lessonId } = Astro.props;
                 sidebar.classList.add("hidden", "lg:block");
             }
         } else {
-            console.log("Sidebar element not found"); // Debug log
+            // console.log("Sidebar element not found"); // Debug log
         }
     });
 </script>

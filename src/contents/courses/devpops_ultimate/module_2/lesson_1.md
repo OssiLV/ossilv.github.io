@@ -3,8 +3,8 @@ course: devpops_ultimate
 module: module_2
 title: "Giới thiệu về Git và GitHub"
 order: 1
-pubDate: 2025-06-26
-updatedDate: 2025-06-26
+pubDate: 2025-06-28
+updatedDate: 2025-06-28
 ---
 
 Trong khóa học này, bạn có thể lựa chọn sử dụng **giao diện dòng lệnh (CLI)** hoặc **giao diện người dùng (UI)** để làm việc với Git. Tuy nhiên, trong khóa học này, chúng ta sẽ sử dụng **dòng lệnh (CLI)**. Vì sao lại chọn CLI?
@@ -49,17 +49,3 @@ Chúng ta cũng sẽ tìm hiểu về **GitHub**:
 - GitHub giúp bạn cộng tác, quản lý phiên bản và chia sẻ mã nguồn với đồng đội hoặc cộng đồng.
 
 Chúng ta sẽ học cách **tích hợp Git với GitHub** và sử dụng GitHub trong quy trình phát triển phần mềm hiện đại.
-
----
-
-## Tài liệu bổ sung & phần thưởng
-
-Ở phần cuối của khóa học này, chúng tôi sẽ cung cấp:
-
-- Các **tài liệu bonus** như mã giảm giá cho các khóa học nâng cao khác.
-- Một số chia sẻ về cách các công ty lớn như **Microsoft** và **Google** sử dụng Git.
-- Các **chiến lược và mô hình triển khai Git** được họ áp dụng thành công trong môi trường sản xuất quy mô lớn.
-
----
-
-Cảm ơn bạn đã theo dõi. Hẹn gặp lại trong bài học tiếp theo.

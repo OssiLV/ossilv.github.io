@@ -4,7 +4,7 @@ import type { CollectionEntry } from "astro:content";
 interface Props {
     course: CollectionEntry<"courses"> | null | undefined;
     isMainCourse: boolean;
-    module?: string;
+    module?: CollectionEntry<"modules">;
     lesson?: CollectionEntry<"lessons">;
 }
 
@@ -28,7 +28,7 @@ const { course, isMainCourse, module, lesson } = Astro.props as Props;
                     {module && (
                             <>
                                 <span>›</span>
-                                <span>{module.replace("_", " ").toUpperCase()}</span>
+                                <span>{module.data.title}</span>
                             </>
                     )}
                     {lesson && (
