@@ -17,7 +17,7 @@ export async function getStaticPaths() {
 
     for (const lesson of lessons) {
         const lessonPathSegments = lesson.id.split("/");
-        const courseId = lessonPathSegments[0]; // e.g., devpops_ultimate
+        const courseId = lessonPathSegments[0]; // e.g., devops_ultimate
         const moduleId = lessonPathSegments[1]; // e.g., module_1
         const lessonFile = lessonPathSegments[2]; // e.g., lesson_1
 
