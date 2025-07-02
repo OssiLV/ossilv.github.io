@@ -1,17 +1,13 @@
 ---
-course: jenkins_basic
-module: module_5
+course: lab_1_ci-cd_pipeline_for_dockerized_java_application
+module: module_1
 title: "Tạo Job và Configs"
 order: 2
 pubDate: 2025-07-02
 updatedDate: 2025-07-02
 ---
 
-## 1. Tạo Freestyle Job 
-
-Tạo Freestyle Job đặt tên `CI-CD Pipeline for Dockerized Java Application`
-
-## 2. Global Tools
+## 1. Global Tools
 
 Di chuyển theo đường dẫn **Dashboard > Jenkins > Tools**
 
@@ -20,6 +16,10 @@ Di chuyển theo đường dẫn **Dashboard > Jenkins > Tools**
     - **Name**: Có thể đặt theo version như `Maven 3.9.10`
     - Check vào `Install automatically`
     - Trong `Install from Apache` chọn Version và nhấn `Save`
+
+## 2. Tạo Freestyle Job
+
+Tạo Freestyle Job đặt tên `CI-CD_Pipeline_for_Dockerized_Java_Application`
 
 ## 3. Configs
 
@@ -66,11 +66,12 @@ Di chuyển theo đường dẫn **Dashboard > Jenkins > Tools**
 | `H/15 * * * 1-5` | Mỗi 15 phút vào các ngày từ thứ 2 đến thứ 6 |
 
 
-> Poll SCM giúp Jenkins tự động kiểm tra (poll) Git repository định kỳ, và tự động trigger (kích hoạt) build job nếu có thay đổi mới trong mã nguồn (commit mới).
+> **Poll SCM** giúp Jenkins tự động kiểm tra (poll) Git repository định kỳ, và tự động trigger (kích hoạt) build job nếu có thay đổi mới trong mã nguồn (commit mới).
 
 
 ### 3.4. Environment 
 
+- Check `Use secret text(s) or file(s)`
 - Thêm `Username and password (separated)`
   - **Username Variable**: DOCKER_USERNAME_ENV
   - **Password Variable**: DOCKER_PASSWORD_ENV
@@ -81,6 +82,20 @@ Di chuyển theo đường dẫn **Dashboard > Jenkins > Tools**
 - Thêm `Invoke top-level Maven targets`
   - **Maven Version**: Chọn Maven Version đã tạo ở bước **Global Tools**
   - **Goals**: Nhập `clean package`
+  - **Advanced** > **POM**: pom.xml
+  
+- Thêm `Execute shell`
+  ```bash
+  echo $DOCKER_PASSWORD_ENV | docker login -u "$DOCKER_USERNAME_ENV" --password-stdin
+  ```
+
 - Thêm `Docker Build and Publish`
-  - **Repository Name**: [Docker Username]/jenkins-demo
-  - 
+  - **Repository Name**: [Docker Username]/jenkins-calculator-app-demo
+  - **Registry credentials**: Chọn Credentials vừa tạo ở bước thiết lập parameterized
+
+### 3.6. Post-build Actions
+
+- Thêm `Archive the artifacts`
+  - **Files to archive**: target/*.jar
+- Thêm `Publish JUnit test result report`
+  - **Test report XMLs**: target/surefire-reports/*xml

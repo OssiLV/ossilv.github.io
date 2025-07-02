@@ -1,6 +1,6 @@
 ---
 course: devops_ultimate
-module: module_6
+module: module_5
 title: "Hợp nhất Nhánh (Branches) trong Git"
 order: 2
 pubDate: 2025-06-28

@@ -1,6 +1,6 @@
 ---
 course: devops_ultimate
-module: module_6
+module: module_5
 title: "So sánh Thư mục Làm việc và Khu vực Staging trong Git"
 order: 1
 pubDate: 2025-06-25

@@ -1,6 +1,6 @@
 ---
 course: devops_ultimate
-module: module_6
+module: module_5
 title: "So sánh các Cam kết (Commits) trong Git"
 order: 2
 pubDate: 2025-06-25
