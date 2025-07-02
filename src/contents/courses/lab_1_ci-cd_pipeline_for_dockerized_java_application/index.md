@@ -1,29 +1,20 @@
 ---
 title: "LAB - 1: CI/CD Pipeline for Dockerized Java Application"
-desc: ""
+desc: "Tech Stack: Jenkins (Dockerized), Maven, Docker, GitHub, DockerHub; Jenkins Plugins: credentials-binding, maven-plugin, docker-build-publish, junit, github"
 author: "ossilv"
 pubDate: 2025-07-02
 updatedDate: 2025-07-02
 level: "beginner"
 overview: [
-#    "Hiểu biết về DevOps và các công cụ DevOps hiện đại như Docker, Kubernetes, Jenkins, Docker Swarm và Kubernetes Helm.",
-#    "Nắm vững hoàn toàn về Docker Containers, điều phối bằng Docker Swarm và Kubernetes.",
-#    "Trở thành chuyên gia DevOps trong lĩnh vực Kubernetes và quản trị Kubernetes từ cơ bản đến nâng cao.",
-#    "Với vai trò Kỹ sư CI DevOps, thực hiện tích hợp Jenkins với nhiều công cụ công nghệ hiện đại như Docker, quy trình phân phối mã (Code Delivery Pipeline), Git & GitHub.",
-#    "Có khả năng tự động hóa quy trình phân phối mã và triển khai (Deployment Pipeline) bằng Jenkins với vai trò Kỹ sư DevOps.",
-#    "Học cách xây dựng ứng dụng đã được đóng gói bằng Docker (Dockerize) sử dụng Docker Containers, Dockerfile và HELM với vai trò Kỹ sư DevOps.",
-#    "Phát triển và triển khai hoàn chỉnh ứng dụng trên nền tảng Kubernetes và Docker Containers."
+    "Built a complete CI/CD pipeline for a Java application using Jenkins Freestyle Job.",
+    "Automated the process: clone source from GitHub → build with Maven → run unit tests → package as Docker image → push to DockerHub.",
+    "Used credentials-binding plugin to securely manage DockerHub credentials.",
+    "Configured SCM trigger to automatically run the job on new commits.",
+    "Managed Jenkins as a Docker container and handled all setup via Docker Compose."
 ]
 requirement: [
-#    "Bạn có tinh thần học hỏi một cách vui vẻ và thoải mái :)",
-#    "Không yêu cầu kiến thức nền tảng. Bất kỳ ai muốn tìm hiểu về các công nghệ DevOps (Docker, Kubernetes, Jenkins, Git & GitHub) đều có thể tham gia khóa học.",
-#    "Tốt hơn nếu bạn có sẵn hệ điều hành Linux để học các công cụ DevOps.",
-#    "Nên có kiến thức cơ bản về quy trình phát triển phần mềm."
 ]
 ---
-
-
-**LAB-1: CI/CD Pipeline for Dockerized Java Application**
 
 ## 1. Các công cụ sử dụng
 
