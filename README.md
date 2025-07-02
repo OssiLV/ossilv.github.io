@@ -27,6 +27,6 @@ The site features a **minimalist, modern design**, responsive across devices.
 - [Astro](https://astro.build/) – Static site generator
 - [Tailwind CSS](https://tailwindcss.com/) – Utility-first CSS framework
 - [Markdown](https://www.markdownguide.org/) – Content writing (blog, course)
-- [TypeScript](https://www.typescriptlang.org/) – Optional typing (nếu dùng)
+- [TypeScript](https://www.typescriptlang.org/) – Optional typing
 
 ---
