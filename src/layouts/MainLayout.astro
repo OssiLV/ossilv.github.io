@@ -1,6 +1,8 @@
 ---
 import '../styles/global.css'
 import Navbar from "@components/Navbar.astro";
+import MusicToggle from '@components/MusicToggle.astro';
+import ScroToTop from '@components/ScrollToTop.astro'
 
 interface Props {
     title: string;
@@ -21,6 +23,8 @@ const { title } = Astro.props;
         <div class="side-line left-line"></div>
         <div class="side-line right-line"></div>
         <Navbar/>
+        <MusicToggle/>
+        <ScroToTop/>
         <slot />
     </body>
 </html>
