@@ -1,1 +1,55 @@
 @import "tailwindcss";
+
+.nixie-one-regular {
+    font-family: "Nixie One", system-ui;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.nixie-one-bold {
+    font-family: "Nixie One", system-ui;
+    font-weight: 700;
+    font-style: normal;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    background-color: #000;
+    background-image:
+            linear-gradient(to right, rgba(255,255,255,0.05) 1px, transparent 1px),
+            linear-gradient(to bottom, rgba(255,255,255,0.05) 1px, transparent 1px);
+    background-size: 50px 50px;
+    color: white;
+    font-family: sans-serif;
+    position: relative;
+}
+
+
+.side-line {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(
+            to bottom,
+            transparent 0%,
+            rgba(255, 255, 255, 0.3) 20%,
+            rgba(255, 255, 255, 0.3) 80%,
+            transparent 100%
+    );
+    box-shadow: 0 0 4px rgba(255, 255, 255, 0.2);
+    transition: background 0.3s ease;
+    pointer-events: none;
+}
+
+.left-line {
+    left: 20px;
+}
+
+.right-line {
+    right: 20px;
+}
