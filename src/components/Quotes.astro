@@ -1,0 +1,58 @@
+---
+const quotes = [
+    {
+        text: "he systems approach begins when first you see the world through the eyes of another.",
+        author: "C. West Churchman",
+    },
+    {
+        text: "Remember, the system is not the sum of the behavior of its parts, but the product of their interactions.",
+        author: "Russell Ackoff",
+    },
+    {
+        text: "In systems thinking, there are no side effects—just effects.",
+        author: "Peter Senge",
+    },
+    {
+        text: "DevOps is not a goal, but a never-ending process of continual improvement.",
+        author: "Jez Humble",
+    },
+    {
+        text: "DevOps is the union of people, process, and products to enable continuous delivery of value to our end users.",
+        author: "Donovan Brown",
+    },
+    {
+        text: "You build it, you run it.",
+        author: "Werner Vogels (CTO, Amazon)",
+    },
+];
+
+// Không random tại server mà truyền toàn bộ mảng vào JS phía client
+---
+
+<div id="quote-box"
+     class="mt-8 px-6 py-4 border-l-4 border-cyan-300 bg-white/5 rounded-md text-sm md:text-base text-gray-300 italic shadow-md max-w-xl">
+
+    <p id="quote-text">
+        <span id="quote-text-content"></span>
+        <span class="ml-1 font-mono text-white" style="animation: blink 1s step-end infinite;">|</span>
+    </p>
+    <span id="quote-author" class="block mt-2 text-cyan-300 font-semibold not-italic">– ...</span>
+</div>
+
+
+<script define:vars={{ quotes }}>
+    const quotesList = quotes;
+    const random = Math.floor(Math.random() * quotesList.length);
+    const selected = quotesList[random];
+
+    document.getElementById("quote-text-content").textContent = `“${selected.text}”`;
+    document.getElementById("quote-author").textContent = `– ${selected.author}`;
+</script>
+
+
+<style>
+    @keyframes blink {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0; }
+    }
+</style>
