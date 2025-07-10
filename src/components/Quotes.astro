@@ -40,7 +40,7 @@ const quotes = [
 </div>
 
 
-<script define:vars={{ quotes }}>
+<script is:inline define:vars={{ quotes }} >
     const quotesList = quotes;
     const random = Math.floor(Math.random() * quotesList.length);
     const selected = quotesList[random];
