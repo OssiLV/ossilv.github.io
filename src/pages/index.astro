@@ -1,7 +1,8 @@
 ---
 import MainLayout from "@layouts/MainLayout.astro"
+import AboutMe from "@assets/images/about_me.jpg"
 import ArrowDown from "@assets/icons/arrow_down.svg"
-import GitHubIcon from "@assets/icons/github.svg"
+import DownloadIcon from "@assets/icons/download.svg"
 import LiveIcon from "@assets/icons/live.svg"
 import AWSIcon from "@assets/icons/aws.svg"
 ---
@@ -34,14 +35,31 @@ import AWSIcon from "@assets/icons/aws.svg"
 			</div>
 		</section>
 
-		<!--ABOUT-->
-		<section id="about" class="min-h-screen flex flex-col justify-center items-center text-center px-6 py-12">
-			<h2 class="text-3xl md:text-4xl font-bold mb-6">About Me</h2>
-			<p class="max-w-3xl text-lg text-gray-300">
-				I'm <span class="text-cyan-300 font-semibold">Truong Vo</span>, a passionate DevOps engineer & developer who loves building efficient, scalable, and automated systems.
-				With a background in Linux, Docker, CI/CD, and cloud platforms, I turn ideas into robust infrastructures.
-				I enjoy learning modern technologies and solving real-world problems through code.
-			</p>
+		<section id="about" class="min-h-screen flex items-center justify-center px-6 py-20 bg-black/80 scroll-mt-24">
+			<div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+
+				<!-- LEFT: TEXT -->
+				<div class="text-center md:text-left">
+					<h2 class="text-3xl md:text-4xl font-bold mb-6">About Me</h2>
+					<p class="text-lg text-gray-300 mb-6">
+						I'm <span class="text-cyan-300 font-semibold">Truong Vo</span>, a passionate DevOps engineer & developer who loves building efficient, scalable, and automated systems.
+						With a background in Linux, Docker, CI/CD, and cloud platforms, I turn ideas into robust infrastructures.
+						I enjoy learning modern technologies and solving real-world problems through code.
+					</p>
+
+					<!-- Resume Button -->
+					<a href="/VoHoangAnhTruong_DevOps_CV.pdf" download
+					   class="inline-flex items-center gap-2 px-6 py-2 border border-white text-white rounded hover:bg-cyan-300 hover:bg-white hover:text-black transition duration-300">
+						Resume
+						<DownloadIcon />
+					</a>
+				</div>
+
+				<!-- RIGHT: IMAGE -->
+				<div class="flex justify-center">
+					<img src={AboutMe.src} alt="About Me" class="max-w-sm rounded-lg shadow-lg" />
+				</div>
+			</div>
 		</section>
 
 		<!-- PROJECTS -->

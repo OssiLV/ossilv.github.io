@@ -43,13 +43,13 @@ body {
     );
     box-shadow: 0 0 4px rgba(255, 255, 255, 0.2);
     transition: background 0.3s ease;
-    pointer-events: none; /* không cản click */
+    pointer-events: none;
 }
 
 .left-line {
-    left: 20px; /* Khoảng cách từ mép trái */
+    left: 20px;
 }
 
 .right-line {
-    right: 20px; /* Khoảng cách từ mép phải */
+    right: 20px;
 }
