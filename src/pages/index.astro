@@ -3,6 +3,7 @@ import MainLayout from "@layouts/MainLayout.astro"
 import ArrowDown from "@assets/icons/arrow_down.svg"
 import GitHubIcon from "@assets/icons/github.svg"
 import LiveIcon from "@assets/icons/live.svg"
+import AWSIcon from "@assets/icons/aws.svg"
 ---
 
 <MainLayout title="Home | OssiLV">
@@ -94,18 +95,50 @@ import LiveIcon from "@assets/icons/live.svg"
 			</div>
 		</section>
 
-		<!--SKILLS-->
-		<section id="skills" class="min-h-screen flex flex-col items-center justify-center py-12 px-6 text-center">
-			<h2 class="text-3xl md:text-4xl font-bold mb-8">Skills</h2>
-			<div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-white text-lg">
-				<div>Linux / Bash</div>
-				<div>Docker & Compose</div>
-				<div>Jenkins</div>
-				<div>Git & GitHub</div>
-				<div>Terraform</div>
-				<div>AWS (EC2, S3, VPC)</div>
-				<div>Kubernetes</div>
-				<div>CI/CD Pipelines</div>
+		<section id="skills" class="min-h-screen flex flex-col items-center justify-center py-16 px-6 text-center bg-black/70">
+			<h2 class="text-3xl md:text-4xl font-bold mb-10 text-white">Skills</h2>
+
+			<div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6 max-w-5xl w-full">
+				<!-- Linux -->
+				<div class="bg-white/5 border border-white/10 text-white py-4 px-3 rounded-lg shadow flex flex-col items-center hover:border-cyan-300 transition">
+					<img src="https://cdn.simpleicons.org/linux/FFFFFF" class="w-8 h-8 mb-2" alt="Linux">
+					<span>Linux / Bash</span>
+				</div>
+				<!-- Docker -->
+				<div class="bg-white/5 border border-white/10 text-white py-4 px-3 rounded-lg shadow flex flex-col items-center hover:border-cyan-300 transition">
+					<img src="https://cdn.simpleicons.org/docker/FFFFFF" class="w-8 h-8 mb-2" alt="Docker">
+					<span>Docker & Compose</span>
+				</div>
+				<!-- Jenkins -->
+				<div class="bg-white/5 border border-white/10 text-white py-4 px-3 rounded-lg shadow flex flex-col items-center hover:border-cyan-300 transition">
+					<img src="https://cdn.simpleicons.org/jenkins/FFFFFF" class="w-8 h-8 mb-2" alt="Jenkins">
+					<span>Jenkins</span>
+				</div>
+				<!-- Git & GitHub -->
+				<div class="bg-white/5 border border-white/10 text-white py-4 px-3 rounded-lg shadow flex flex-col items-center hover:border-cyan-300 transition">
+					<img src="https://cdn.simpleicons.org/github/FFFFFF" class="w-8 h-8 mb-2" alt="GitHub">
+					<span>Git & GitHub</span>
+				</div>
+				<!-- Terraform -->
+				<div class="bg-white/5 border border-white/10 text-white py-4 px-3 rounded-lg shadow flex flex-col items-center hover:border-cyan-300 transition">
+					<img src="https://cdn.simpleicons.org/terraform/FFFFFF" class="w-8 h-8 mb-2" alt="Terraform">
+					<span>Terraform</span>
+				</div>
+				<!-- AWS -->
+				<div class="bg-white/5 border border-white/10 text-white py-4 px-3 rounded-lg shadow flex flex-col items-center hover:border-cyan-300 transition">
+					<AWSIcon />
+					<span>AWS (EC2, S3, VPC)</span>
+				</div>
+				<!-- Kubernetes -->
+				<div class="bg-white/5 border border-white/10 text-white py-4 px-3 rounded-lg shadow flex flex-col items-center hover:border-cyan-300 transition">
+					<img src="https://cdn.simpleicons.org/kubernetes/FFFFFF" class="w-8 h-8 mb-2" alt="Kubernetes">
+					<span>Kubernetes</span>
+				</div>
+				<!-- CI/CD Pipelines (ví dụ GitLab) -->
+				<div class="bg-white/5 border border-white/10 text-white py-4 px-3 rounded-lg shadow flex flex-col items-center hover:border-cyan-300 transition">
+					<img src="https://cdn.simpleicons.org/ansible/FFFFFF" class="w-8 h-8 mb-2" alt="Ansible">
+					<span>Ansible</span>
+				</div>
 			</div>
 		</section>
 
