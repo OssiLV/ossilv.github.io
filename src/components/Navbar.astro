@@ -1,7 +1,3 @@
----
-
----
-
 <nav
     class="fixed top-0 left-0 w-full bg-transparent bg-opacity-60 backdrop-blur z-50 border-b border-white/10"
 >
@@ -97,6 +93,8 @@
         mobileMenu?.querySelectorAll('a').forEach((link) => {
             link.addEventListener('click', () => {
                 mobileMenu.classList.add('hidden');
+                menuIcon?.classList.remove('hidden');
+                closeIcon?.classList.add('hidden');
             });
         });
     });
