@@ -1,0 +1,72 @@
+---
+const skills = [
+    {
+        category: 'Core',
+        items: [
+            { name: 'Linux', icon: 'devicon-linux-plain' },
+            { name: 'Bash', icon: 'devicon-bash-plain' },
+            { name: 'NGINX', icon: 'devicon-nginx-original' },
+        ],
+    },
+    {
+        category: 'Containers & CI/CD',
+        items: [
+            { name: 'Docker', icon: 'devicon-docker-plain' },
+            { name: 'Kubernetes', icon: 'devicon-kubernetes-plain' },
+            { name: 'Jenkins', icon: 'devicon-jenkins-line' },
+            { name: 'Git', icon: 'devicon-git-plain' },
+            { name: 'GitHub', icon: 'devicon-github-plain' },
+            { name: 'GitLab', icon: 'devicon-gitlab-plain' },
+        ],
+    },
+    {
+        category: 'Cloud & Monitoring',
+        items: [
+            { name: 'AWS', icon: 'devicon-amazonwebservices-plain-wordmark' },
+            { name: 'Prometheus', icon: 'devicon-prometheus-plain' },
+            { name: 'Grafana', icon: 'devicon-grafana-plain' },
+        ],
+    },
+    {
+        category: 'Programming',
+        items: [
+            { name: 'Python', icon: 'devicon-python-plain' },
+            { name: 'Java', icon: 'devicon-java-plain' },
+            { name: 'JavaScript', icon: 'devicon-javascript-plain' },
+            { name: 'CSharp', icon: 'devicon-csharp-plain' },
+        ],
+    },
+];
+---
+
+<!-- SKILLS -->
+<section
+    id="skills"
+    class="min-h-screen scroll-mt-6 flex flex-col items-center justify-center py-16 px-6 text-center bg-black/80"
+>
+    <h2 class="text-3xl md:text-4xl font-bold mb-10 text-white">Skills</h2>
+
+    <div class="space-y-16 max-w-5xl w-full">
+        {
+            skills.map((group) => (
+                <div>
+                    {/* Group Title */}
+                    <h3 class="text-xl font-semibold text-cyan-300 mb-8 text-center">
+                        {group.category}
+                    </h3>
+                    {/* Skills Grid */}
+                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+                        {group.items.map((skill) => (
+                            <>
+                                <div class="bg-white/5 border border-white/10 text-white py-6 px-4 rounded-lg shadow flex flex-col items-center hover:border-cyan-300 transition">
+                                    <i class={`${skill.icon} text-5xl mb-3`} />
+                                    <span>{skill.name}</span>
+                                </div>
+                            </>
+                        ))}
+                    </div>
+                </div>
+            ))
+        }
+    </div>
+</section>

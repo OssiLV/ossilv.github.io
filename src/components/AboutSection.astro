@@ -1,0 +1,41 @@
+---
+import DownloadIcon from '@assets/icons/download.svg';
+---
+
+<section id="about" class="min-h-screen flex items-center justify-center px-6 py-20">
+    <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+        <!-- Avatar -->
+        <div class="flex justify-center">
+            <img
+                src="https://github.com/OssiLV.png"
+                alt="My Avatar"
+                class="rounded-full w-60 h-60 object-cover border-4 border-cyan-300 shadow-lg"
+            />
+        </div>
+
+        <!-- About Text -->
+        <div>
+            <h2 class="text-3xl font-bold mb-6 text-cyan-300">About Me</h2>
+            <p class="text-gray-300 mb-6 leading-relaxed">
+                I'm Truong Vo (OssiLV) — a DevOps & Web Developer passionate about automation,
+                backend development, and building scalable systems. I love learning new technologies
+                and experimenting with cloud-native solutions.
+            </p>
+            <div class="flex gap-4">
+                <a
+                    href="/resume.pdf"
+                    target="_blank"
+                    class="flex items-center gap-2 px-6 py-3 border border-cyan-300 text-cyan-300 rounded-md hover:bg-cyan-300 hover:text-black transition"
+                >
+                    <DownloadIcon /> Resume
+                </a>
+                <a
+                    href="#contact"
+                    class="px-6 py-3 border border-white text-white rounded-md hover:bg-white hover:text-black transition"
+                >
+                    Contact Me
+                </a>
+            </div>
+        </div>
+    </div>
+</section>

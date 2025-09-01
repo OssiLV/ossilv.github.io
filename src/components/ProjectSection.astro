@@ -1,0 +1,54 @@
+---
+import ProjectCard from './ProjectCard.astro';
+
+const projects = [
+    {
+        title: 'CI/CD Pipeline with Jenkins',
+        description:
+            'A complete CI/CD pipeline using Jenkins, Docker, and GitHub to automate build, test, and deploy for a Node.js application.',
+        image: '/projects/jenkins.png',
+        techs: [
+            { name: 'Jenkins', icon: 'devicon-jenkins-line' },
+            { name: 'Docker', icon: 'devicon-docker-plain' },
+            { name: 'GitHub', icon: 'devicon-github-original' },
+            { name: 'Node.js', icon: 'devicon-nodejs-plain' },
+        ],
+        liveLink: '#',
+        repoLink: '#',
+    },
+    {
+        title: 'Portfolio Website',
+        description:
+            'Personal portfolio website built with Astro and TailwindCSS, deployed on Vercel.',
+        image: '/projects/portfolio.png',
+        techs: [
+            { name: 'Astro', icon: 'devicon-astro-plain' },
+            { name: 'TailwindCSS', icon: 'devicon-tailwindcss-plain' },
+            { name: 'Vercel', icon: 'devicon-vercel-original' },
+        ],
+        liveLink: '#',
+        repoLink: '#',
+    },
+    {
+        title: 'Kubernetes Monitoring Stack',
+        description: 'A monitoring stack with Prometheus, Grafana, and Loki running on Kubernetes.',
+        image: '/projects/monitoring.png',
+        techs: [
+            { name: 'Kubernetes', icon: 'devicon-kubernetes-plain' },
+            { name: 'Prometheus', icon: 'devicon-prometheus-plain' },
+            { name: 'Grafana', icon: 'devicon-grafana-plain' },
+        ],
+        liveLink: '#',
+        repoLink: '#',
+    },
+];
+---
+
+<!-- PROJECTS -->
+<section id="projects" class="min-h-screen scroll-mt-24 bg-black/80 py-16 px-6 text-center">
+    <h2 class="text-3xl md:text-4xl font-bold mb-12 text-cyan-300">Projects</h2>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 max-w-6xl mx-auto text-left">
+        {projects.map((project) => <ProjectCard project={project} />)}
+    </div>
+</section>

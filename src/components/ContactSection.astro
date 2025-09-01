@@ -1,0 +1,50 @@
+---
+const contacts = [
+    {
+        name: 'Gmail',
+        href: 'mailto:vohoanganhtruong@gmail.com',
+        icon: 'devicon-google-plain',
+        detail: 'vohoanganhtruong@gmail.com',
+    },
+    {
+        name: 'LinkedIn',
+        href: 'https://linkedin.com/in/ossilv',
+        icon: 'devicon-linkedin-plain',
+        detail: 'linkedin.com/in/ossilv',
+    },
+    {
+        name: 'GitHub',
+        href: 'https://github.com/OssiLV',
+        icon: 'devicon-github-original',
+        detail: 'github.com/OssiLV',
+    },
+];
+---
+
+<!-- CONTACT -->
+<section
+    id="contact"
+    class="min-h-screen flex flex-col items-center justify-center py-16 px-6 text-center bg-black/80"
+>
+    <h2 class="text-3xl md:text-4xl font-bold mb-10 text-cyan-300">Contact</h2>
+
+    <p class="text-white/80 max-w-xl mb-12">
+        Want to collaborate or have any questions? Feel free to reach out to me!
+    </p>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 max-w-3xl w-full">
+        {
+            contacts.map((contact) => (
+                <a
+                    href={contact.href}
+                    target="_blank"
+                    class="bg-white/5 border border-white/10 py-6 px-4 rounded-lg shadow flex flex-col items-center text-white hover:border-cyan-300 transition"
+                >
+                    <i class={`${contact.icon} text-5xl mb-3`} />
+                    <span>{contact.name}</span>
+                    <span class="text-sm text-white/70">{contact.detail}</span>
+                </a>
+            ))
+        }
+    </div>
+</section>

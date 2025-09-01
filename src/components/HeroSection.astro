@@ -1,0 +1,28 @@
+---
+import ArrowDown from '@assets/icons/arrow_down.svg';
+import Quotes from '@components/Quotes.astro';
+---
+
+<section id="hero" class="h-screen flex items-center justify-center px-8 md:px-16 text-white">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center max-w-7xl w-full">
+        <div class="text-center md:text-left">
+            <h1 class="text-4xl md:text-5xl font-bold mb-4 text-cyan-300">Hi, I'm Truong Vo 👋</h1>
+            <div class="mb-6">
+                <img
+                    src="https://readme-typing-svg.herokuapp.com/?lines=DevOps+and+Web+Developer;Currently+into+DevOps+and+Backend+dev!&center=false&width=500&height=50&font=Fira+Code&color=ffffff&vCenter=true&pause=700"
+                    alt="Typing introduction"
+                    class="mx-auto md:mx-0"
+                />
+            </div>
+            <a
+                href="#about"
+                title="Go to About section"
+                class="inline-flex items-center gap-2 px-6 py-3 border border-white text-white rounded-md hover:bg-white hover:text-black transition duration-300"
+            >
+                Scroll Down
+                <ArrowDown />
+            </a>
+            <Quotes />
+        </div>
+    </div>
+</section>
