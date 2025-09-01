@@ -1,12 +1,12 @@
 ---
-const audioFile = "/music_background.mp3";
+const audioFile = '/music_background.mp3';
 ---
 
 <div id="music-toggle" class="fixed bottom-8 right-8 z-50">
     <button
-            class="bg-white/10 border border-white/20 p-3 rounded-full hover:bg-white/20 transition"
-            onclick="toggleMusic()"
-            title="Toggle Music"
+        class="bg-white/10 border border-white/20 p-3 rounded-full hover:bg-white/20 transition"
+        onclick="toggleMusic()"
+        title="Toggle Music"
     >
         <span id="music-icon" class="text-white text-xl">🔇</span>
     </button>
@@ -14,16 +14,16 @@ const audioFile = "/music_background.mp3";
     <audio id="bg-music" src={audioFile} loop></audio>
 
     <script is:inline>
-        const audio = document.getElementById("bg-music");
-        const icon = document.getElementById("music-icon");
+        const audio = document.getElementById('bg-music');
+        const icon = document.getElementById('music-icon');
 
         function toggleMusic() {
             if (audio.paused) {
                 audio.play();
-                icon.textContent = "🔊";
+                icon.textContent = '🔊';
             } else {
                 audio.pause();
-                icon.textContent = "🔇";
+                icon.textContent = '🔇';
             }
         }
     </script>

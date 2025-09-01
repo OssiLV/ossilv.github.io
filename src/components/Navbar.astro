@@ -1,38 +1,84 @@
 ---
+
 ---
 
-<nav class="fixed top-0 left-0 w-full bg-transparent bg-opacity-60 backdrop-blur z-50 border-b border-white/10">
+<nav
+    class="fixed top-0 left-0 w-full bg-transparent bg-opacity-60 backdrop-blur z-50 border-b border-white/10"
+>
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between items-center h-16">
             <!-- Logo / Name -->
-            <a href="#" class="nixie-one-bold text-white text-2xl tracking-wide hover:text-cyan-300 transition">
+            <a
+                href="#"
+                class="nixie-one-bold text-white text-2xl tracking-wide hover:text-cyan-300 transition"
+            >
                 OssiLV
             </a>
 
             <!-- Navigation Links (Desktop) -->
             <div class="nixie-one-regular hidden md:flex space-x-6 text-white font-light">
-                <a href="#about" class="hover:text-cyan-300 transition group"><span class="group-hover:text-purple-600">#</span>About</a>
-                <a href="#projects" class="hover:text-cyan-300 transition group"><span class="group-hover:text-purple-600">#</span>Projects</a>
-                <a href="#skills" class="hover:text-cyan-300 transition group"><span class="group-hover:text-purple-600">#</span>Skills</a>
-                <a href="#contact" class="hover:text-cyan-300 transition group"><span class="group-hover:text-purple-600">#</span>Contact</a>
+                <a href="#about" class="hover:text-cyan-300 transition group"
+                    ><span class="group-hover:text-purple-600">#</span>About</a
+                >
+                <a href="#projects" class="hover:text-cyan-300 transition group"
+                    ><span class="group-hover:text-purple-600">#</span>Projects</a
+                >
+                <a href="#skills" class="hover:text-cyan-300 transition group"
+                    ><span class="group-hover:text-purple-600">#</span>Skills</a
+                >
+                <a href="#contact" class="hover:text-cyan-300 transition group"
+                    ><span class="group-hover:text-purple-600">#</span>Contact</a
+                >
             </div>
 
             <!-- Hamburger Menu (Mobile) -->
-            <button id="mobile-menu-button" class="md:hidden text-white focus:outline-none" aria-label="Toggle menu">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path id="menu-icon" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-                    <path id="close-icon" class="hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+            <button
+                id="mobile-menu-button"
+                class="md:hidden text-white focus:outline-none"
+                aria-label="Toggle menu"
+            >
+                <svg
+                    class="w-6 h-6"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                >
+                    <path
+                        id="menu-icon"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M4 6h16M4 12h16M4 18h16"></path>
+                    <path
+                        id="close-icon"
+                        class="hidden"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M6 18L18 6M6 6l12 12"></path>
                 </svg>
             </button>
         </div>
 
         <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden bg-black bg-opacity-90 border-t border-white/10">
+        <div
+            id="mobile-menu"
+            class="hidden md:hidden bg-black bg-opacity-90 border-t border-white/10"
+        >
             <div class="px-4 py-4 flex flex-col space-y-4 text-white font-light">
-                <a href="#about" class="hover:text-cyan-300 transition group"><span class="group-hover:text-purple-600">#</span>About</a>
-                <a href="#projects" class="hover:text-cyan-300 transition group"><span class="group-hover:text-purple-600">#</span>Projects</a>
-                <a href="#skills" class="hover:text-cyan-300 transition group"><span class="group-hover:text-purple-600">#</span>Skills</a>
-                <a href="#contact" class="hover:text-cyan-300 transition group"><span class="group-hover:text-purple-600">#</span>Contact</a>
+                <a href="#about" class="hover:text-cyan-300 transition group"
+                    ><span class="group-hover:text-purple-600">#</span>About</a
+                >
+                <a href="#projects" class="hover:text-cyan-300 transition group"
+                    ><span class="group-hover:text-purple-600">#</span>Projects</a
+                >
+                <a href="#skills" class="hover:text-cyan-300 transition group"
+                    ><span class="group-hover:text-purple-600">#</span>Skills</a
+                >
+                <a href="#contact" class="hover:text-cyan-300 transition group"
+                    ><span class="group-hover:text-purple-600">#</span>Contact</a
+                >
             </div>
         </div>
     </div>
@@ -48,7 +94,7 @@
         menuIcon?.classList.toggle('hidden');
         closeIcon?.classList.toggle('hidden');
 
-        mobileMenu?.querySelectorAll('a').forEach(link => {
+        mobileMenu?.querySelectorAll('a').forEach((link) => {
             link.addEventListener('click', () => {
                 mobileMenu.classList.add('hidden');
             });
